@@ -33,6 +33,8 @@ public class EffectsController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.effectsController = this;
+        
         if (Source == null)
         {
             GameObject obj = Instantiate(SourcePrefab, new Vector3(0, 0, -10), Quaternion.identity);

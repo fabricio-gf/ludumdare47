@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &182583624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182583627}
+  - component: {fileID: 182583626}
+  - component: {fileID: 182583625}
+  m_Layer: 0
+  m_Name: '@SceneLoader'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &182583625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182583624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacef97b0119679418dcc341185fe168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSceneName: 
+  currentSceneIndex: 0
+--- !u!114 &182583626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182583624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad6f8176941d0441ac7fd2df38ecbdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingBehavior: {fileID: 0}
+  previousSceneName: 
+  levelTracks:
+  - {fileID: 8300000, guid: 0819784be8b71814a9b1f74c88a849b1, type: 3}
+  - {fileID: 8300000, guid: 77f264b2cf7d97a4c9e6600e32d9101d, type: 3}
+  levelTracksLoopTimes:
+  - 178.752
+  - 165.721
+--- !u!4 &182583627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182583624}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.14532605, y: 0.50118834, z: 64.064064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317003534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1432,7 @@ GameObject:
   - component: {fileID: 1401798546}
   - component: {fileID: 1401798545}
   - component: {fileID: 1401798544}
+  - component: {fileID: 1401798547}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1390,8 +1457,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 24}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -46}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401798544
 MonoBehaviour:
@@ -1435,19 +1502,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1401798545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1935240891}
-        m_TargetAssemblyTypeName: MenuBehavior, Assembly-CSharp
-        m_MethodName: PressPlay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1401798545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,6 +1541,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401798542}
   m_CullTransparentMesh: 0
+--- !u!114 &1401798547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401798542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1210b39dfdd7b8f4f89423f6d82005fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddRestartScene: 0
+  AddLoadScene: 1
+  SceneName: SampleScene
+  TrackIndexToPlay: 1
 --- !u!1 &1434031474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,8 +1728,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -177}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441200785
 MonoBehaviour:
@@ -2024,7 +2095,7 @@ GameObject:
   - component: {fileID: 1935240892}
   - component: {fileID: 1935240891}
   m_Layer: 0
-  m_Name: MenuBehavior
+  m_Name: '@MenuBehavior'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2045,6 +2116,7 @@ MonoBehaviour:
   menuAnimator: {fileID: 828387417}
   mainCanvas: {fileID: 828387416}
   creditsCanvas: {fileID: 1620691110}
+  testClip: {fileID: 8300000, guid: 77f264b2cf7d97a4c9e6600e32d9101d, type: 3}
 --- !u!4 &1935240892
 Transform:
   m_ObjectHideFlags: 0
@@ -2120,6 +2192,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: FadeDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
+      propertyPath: BlendDuration
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210223, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}

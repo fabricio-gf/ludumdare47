@@ -4,6 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance = null;
 
+    public MusicController musicController = null;
+    public EffectsController effectsController = null;
+
     private void Awake()
     {
         if (instance == null)

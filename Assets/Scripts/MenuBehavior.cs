@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,11 +14,7 @@ public class MenuBehavior : MonoBehaviour
     
     
     private static readonly int OpenCredits = Animator.StringToHash("OpenCredits");
-
-    public void PressPlay()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
+    
 
     public void PressCredits()
     {

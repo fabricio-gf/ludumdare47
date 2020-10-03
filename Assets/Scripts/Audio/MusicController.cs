@@ -36,6 +36,8 @@ public class MusicController : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.musicController = this;
+
         if (Source1 == null && Source2 == null)
         {
             Transform obj = Instantiate(SourcePrefab, new Vector3(0, 0, -10), Quaternion.identity).transform;
@@ -83,7 +85,7 @@ public class MusicController : MonoBehaviour
         }
     }
 
-    public void ChangeTrackBlend(AudioClip newTrack, float loopTime, float BlendDuration)
+    public void ChangeTrackBlend(AudioClip newTrack, float loopTime)
     {
         if (!IsBlending)
         {
