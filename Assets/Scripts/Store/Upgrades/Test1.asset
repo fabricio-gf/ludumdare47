@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e85152ac37cb714cb01b50226aea3ed, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
-  upgradeName: Test 1
+  upgradeName: Coffee Pills
   icon: {fileID: 21300000, guid: 5551c6e26a32d1646b002d7033c4ebe6, type: 3}
-  description: Teste teste 1
-  cost: 1
+  description: Makes Sir Tainly super fast (2x movement and attack speed)
+  cost: 500

@@ -9,6 +9,6 @@ public class Upgrade : ScriptableObject
 {
     public string upgradeName;
     public Sprite icon;
-    public string description;
+    [TextArea] public string description;
     public int cost;
 }
