@@ -472,7 +472,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 593452326}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1935240891}
+        m_TargetAssemblyTypeName: MenuBehavior, Assembly-CSharp
+        m_MethodName: PressBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &593452326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1401798545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1935240891}
+        m_TargetAssemblyTypeName: MenuBehavior, Assembly-CSharp
+        m_MethodName: PressPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1401798545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,7 +1291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1441200786}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1935240891}
+        m_TargetAssemblyTypeName: MenuBehavior, Assembly-CSharp
+        m_MethodName: PressCredits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1441200786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1620691111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,9 +1471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778d4a866423e5d41a623144d37e5ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuAnimator: {fileID: 0}
-  mainCanvas: {fileID: 0}
-  creditsCanvas: {fileID: 0}
+  menuAnimator: {fileID: 828387417}
+  mainCanvas: {fileID: 828387416}
+  creditsCanvas: {fileID: 1620691110}
 --- !u!4 &1935240892
 Transform:
   m_ObjectHideFlags: 0
