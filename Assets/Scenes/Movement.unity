@@ -360,9 +360,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1427539072}
   - component: {fileID: 1427539071}
+  - component: {fileID: 1427539073}
   - component: {fileID: 1427539070}
   - component: {fileID: 1427539069}
-  - component: {fileID: 1427539073}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -383,8 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rollSpeed: 40
-  rbd: {fileID: 0}
+  startRollSpeed: 40
+  startRollCooldown: 1
+  rbd: {fileID: 1427539070}
   charState: 0
 --- !u!50 &1427539070
 Rigidbody2D:
