@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 8267930613787137070}
   - component: {fileID: 8267930613787137069}
   - component: {fileID: 8267930613787137234}
+  - component: {fileID: 548723619755081392}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -313,7 +314,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 5551c6e26a32d1646b002d7033c4ebe6, type: 3}
+  m_Sprite: {fileID: 1602060040314335969, guid: 0648644e4e082e245b8ecf35d0cac845, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -407,3 +408,22 @@ MonoBehaviour:
   attackPoint: {fileID: 8267930611990873472}
   swordSweep: {fileID: 8267930613727943737}
   attackRadius: 1
+--- !u!95 &548723619755081392
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8267930613787137068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ae011f74513ca649906d732fcf20b3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
