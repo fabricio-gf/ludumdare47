@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordAttacking : MonoBehaviour
 {
     public Rigidbody2D rbd;
-    private Camera cam;
+    public Camera cam;
 
     public Transform attackPoint;
     public GameObject swordSweep;
@@ -25,6 +25,8 @@ public class SwordAttacking : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.isGamePaused) return;
+        
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetButtonDown("Fire1"))

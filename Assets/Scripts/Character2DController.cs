@@ -56,7 +56,10 @@ public class Character2DController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.isGamePaused) return;
+        
         GetInput();
+        
     }
 
     private void FixedUpdate()
