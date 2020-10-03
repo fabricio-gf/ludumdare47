@@ -13,8 +13,8 @@ public class MusicController : MonoBehaviour
     private Toggle MusicMuteToggle = null;
 
     // PUBLIC REFERENCES
-    [Space(20)]
     [Header("References")]
+    [Space(10)]
     [SerializeField] private AudioClip InitialMusicTrack = null;
     [SerializeField] private float LoopDuration = 0;
 
