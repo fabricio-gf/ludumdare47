@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreBehavior : MonoBehaviour
 {
@@ -18,10 +19,16 @@ public class StoreBehavior : MonoBehaviour
 
     public void FillStore()
     {
+        var i = 0;
         foreach (var upgrade in upgradeList)
         {
             var p = Instantiate(buttonPrefab, buttonGrid);
             p.GetComponent<UpgradeButton>().AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost);
+           
+            var localIndex = i;
+            p.GetComponent<Button>().onClick.AddListener(() => BuyUpgrade(localIndex));
+            
+            i++;
         }
     }
     
@@ -30,9 +37,9 @@ public class StoreBehavior : MonoBehaviour
         
     }
 
-    public void BuyStuff(int index)
+    public void BuyUpgrade(int index)
     {
-        
+        print("Pressing button " + index);
     }
 
     public void UpdateMoney(int change)
