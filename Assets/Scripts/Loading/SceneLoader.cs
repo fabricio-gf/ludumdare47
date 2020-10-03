@@ -92,7 +92,9 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         yield return SceneManager.UnloadSceneAsync("LoadingScreen");
-        
+
+        AudioManager.instance.musicController.ForceAddListener();
+        AudioManager.instance.effectsController.ForceAddListener();
         //trigger level start
     }
 

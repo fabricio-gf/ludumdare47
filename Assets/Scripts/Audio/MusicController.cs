@@ -61,6 +61,12 @@ public class MusicController : MonoBehaviour
         }
     }
 
+    public void ForceAddListener()
+    {
+        MusicMuteToggle = GameObject.Find("MusicMute")?.GetComponent<Toggle>();
+        MusicMuteToggle?.onValueChanged.AddListener((bool mute) => ToggleMuteMusic(mute));
+    }
+
     void AddListenerToMuteButton(Scene scene, LoadSceneMode mode)
     {
         MusicMuteToggle = GameObject.Find("MusicMute")?.GetComponent<Toggle>();
@@ -114,6 +120,7 @@ public class MusicController : MonoBehaviour
 
     public void ToggleMuteMusic(bool mute)
     {
+        print("Toggling mute music");
         Source1.mute = mute;
         Source2.mute = mute;
         PlayerPrefs.SetInt(PrefsString, mute ? 1 : 0);

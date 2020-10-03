@@ -49,6 +49,12 @@ public class EffectsController : MonoBehaviour
             Source.mute = true;
         }
     }
+    
+    public void ForceAddListener()
+    {
+        SFXMuteToggle = GameObject.Find("MusicMute")?.GetComponent<Toggle>();
+        SFXMuteToggle?.onValueChanged.AddListener((bool mute) => ToggleMuteSFX(mute));
+    }
 
     void AddListenerToMuteButton(Scene scene, LoadSceneMode mode)
     {
