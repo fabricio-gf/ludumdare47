@@ -10,11 +10,15 @@ public class Character2DController : MonoBehaviour
     private float rollSpeed;
     public float startRollCooldown = 1f;
     private float rollCooldown;
+    public float handRadius = 0.5f;
 
+    public Camera cam;
     public Rigidbody2D rbd;
+    public Transform playerHand;
 
     private Vector2 movement;
     private Vector2 rollDir;
+    private Vector2 mousePos;
 
     private bool dodgeRoll;
     private bool canRoll = true;
@@ -29,6 +33,9 @@ public class Character2DController : MonoBehaviour
 
     private void Awake()
     {
+        if (cam == null)
+            cam = Camera.main;
+
         if (rbd == null)
             rbd = GetComponent<Rigidbody2D>();
 
@@ -52,6 +59,8 @@ public class Character2DController : MonoBehaviour
                 break;
         }
 
+        HandleHandPos();
+
         HandleDodgeCooldown();
     }
 
@@ -63,6 +72,7 @@ public class Character2DController : MonoBehaviour
             dodgeRoll = true;
         else if (Input.GetButtonUp("Jump"))
             dodgeRoll = false;
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void HandleMovement()
@@ -81,7 +91,8 @@ public class Character2DController : MonoBehaviour
             }
             else
             {
-                rollDir = (Input.mousePosition - Camera.main.WorldToScreenPoint(rbd.position)).normalized;
+                //rollDir = (Input.mousePosition - Camera.main.WorldToScreenPoint(rbd.position)).normalized;
+                rollDir = (mousePos - rbd.position).normalized;
             }
 
             ChangeChararacterStateTo(CharacterState.DodgeRolling);
@@ -121,5 +132,14 @@ public class Character2DController : MonoBehaviour
     {
         ChangeChararacterStateTo(CharacterState.Normal);
         rollCooldown = startRollCooldown;
+    }
+
+    void HandleHandPos()
+    {
+        Vector2 lookDir = (mousePos - rbd.position).normalized;
+        playerHand.position = rbd.position + lookDir * handRadius;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        playerHand.rotation = rotation;
     }
 }
