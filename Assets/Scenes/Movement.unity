@@ -383,7 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  rollSpeed: 40
   rbd: {fileID: 0}
+  charState: 0
 --- !u!50 &1427539070
 Rigidbody2D:
   serializedVersion: 4
@@ -403,7 +405,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1427539071
 SpriteRenderer:
