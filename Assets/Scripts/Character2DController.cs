@@ -15,7 +15,9 @@ public class Character2DController : MonoBehaviour
     public Camera cam;
     public Rigidbody2D rbd;
     public Transform playerHand;
-
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+    
     private Vector2 movement;
     private Vector2 rollDir;
     private Vector2 mousePos;
@@ -39,12 +41,25 @@ public class Character2DController : MonoBehaviour
         if (rbd == null)
             rbd = GetComponent<Rigidbody2D>();
 
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
         Init();
     }
 
     private void Update()
     {
+        if (GameManager.Instance.isGamePaused) return;
+        
         GetInput();
+        
     }
 
     private void FixedUpdate()
@@ -68,6 +83,25 @@ public class Character2DController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (movement.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (movement.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        
+        if (movement != Vector2.zero)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+        
         if (Input.GetButtonDown("Jump"))
             dodgeRoll = true;
         else if (Input.GetButtonUp("Jump"))
