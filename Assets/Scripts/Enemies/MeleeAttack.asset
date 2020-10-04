@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackAnim: {fileID: 7400000, guid: ec25ddd30bc913f468efaaebcbc2a729, type: 2}
   _attackRange: 2
-  _attackDamage: 0
+  _attackDamage: 5
