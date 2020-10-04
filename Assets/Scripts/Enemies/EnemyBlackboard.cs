@@ -21,7 +21,8 @@ public class EnemyBlackboard : MonoBehaviour
         }
     }
 
-    [HideInInspector] public Transform player;
+    [HideInInspector] public Transform _player;
+    [HideInInspector] public Character2DController _playerController;
     [HideInInspector] public int enemyCount;
 
     public enum EnemyStates
@@ -31,6 +32,7 @@ public class EnemyBlackboard : MonoBehaviour
 
     private void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _playerController = _player.GetComponent<Character2DController>();
     }
 }
