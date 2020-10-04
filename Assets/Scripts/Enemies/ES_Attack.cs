@@ -19,6 +19,8 @@ public class ES_Attack : EnemyState
         
         if (_attack.AttackAnim != null) _enemyController.Animator.Play(_attack.AttackAnim.name);
         _startTime = Time.unscaledTime;
+        
+        _enemyController.HandleFlip();
     }
 
     public override void OnStateUpdate()
