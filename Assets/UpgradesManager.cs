@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradesManager : MonoBehaviour
 {
     public int money;
+    public Transform ownedUpgradesIconsParent;
     public List<Upgrade> ownedUpgrades = new List<Upgrade>();
 
     private static UpgradesManager _instance;
@@ -35,5 +37,18 @@ public class UpgradesManager : MonoBehaviour
     public void AddUpgrade(Upgrade upgrade)
     {
         ownedUpgrades.Add(upgrade);
+    }
+
+    public void UpdateOwnedUpgradesIcons()
+    {
+        if (ownedUpgradesIconsParent == null)
+            ownedUpgradesIconsParent = GameObject.Find("OwnedUpgradesIcons").transform;
+
+        foreach (Upgrade upgrade in ownedUpgrades)
+        {
+            var p = Instantiate(new GameObject(), ownedUpgradesIconsParent);
+            var img = p.AddComponent<Image>();
+            img.sprite = upgrade.icon;
+        }
     }
 }
