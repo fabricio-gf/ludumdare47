@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_currentState == null) return;
+        if (_currentState == null || GameManager.Instance.isWaiting) return;
         _currentState.OnStateUpdate();
     }
 
