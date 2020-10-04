@@ -95,7 +95,8 @@ public class SceneLoader : MonoBehaviour
 
         AudioManager.instance.musicController.ForceAddListener();
         AudioManager.instance.effectsController.ForceAddListener();
-        //trigger level start
+        
+        GameManager.Instance.InitRound();
     }
 
 }

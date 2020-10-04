@@ -182,6 +182,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(QuitDelay());
     }
 
+    public void InitRound()
+    {
+        ChangeGameStateTo(GameState.Waiting);
+    }
+
     IEnumerator QuitDelay()
     {
         yield return new WaitForSeconds(1f);
