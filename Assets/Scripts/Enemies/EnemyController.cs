@@ -18,6 +18,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected float _speed;
     public float Speed => _speed;
     
+    [SerializeField] private AttackDefinition _attack;
+    public AttackDefinition Attack => _attack;
+    
+    
+    
     private Rigidbody2D _rb;
     public Rigidbody2D Rigidbody => _rb;
 
@@ -68,5 +73,11 @@ public class EnemyController : MonoBehaviour
     {
         var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
         return dist <= DetectionRange && dist >= 1.5f;
+    }
+    
+    public bool PlayerOnAttackRange()
+    {
+        var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
+        return dist <= _attack.AttackRange;
     }
 }

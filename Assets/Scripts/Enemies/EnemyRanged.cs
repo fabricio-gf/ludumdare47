@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMelee : EnemyController
+public class EnemyRanged : EnemyController
 {
     [SerializeField] private float _attackCooldown;
     public float AttackCooldown => _attackCooldown + Attack.AttackDuration;
