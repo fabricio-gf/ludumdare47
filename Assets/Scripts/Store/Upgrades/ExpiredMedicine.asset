@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Expired Medicine
   icon: {fileID: 21300000, guid: 8ac9041da39381d4098b712384ab6aa8, type: 3}
-  description: Curabitur pharetra odio sed imperdiet ullamcorper.
+  description: Slip these on the guests' drinks to make them... unwell. Slows enemies
+    down.
   cost: 50

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Cosmic Donut
   icon: {fileID: 21300000, guid: 595a5eda988a41e44ba1542975d45e99, type: 3}
-  description: Nunc ac mollis mi. Donec at eleifend tortor.
+  description: Bend time to your will! Each enemy defeated grants a small amount
+    of extra time.
   cost: 175
