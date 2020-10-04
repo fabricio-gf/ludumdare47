@@ -11,6 +11,7 @@ public class StoreBehavior : MonoBehaviour
     public List<Upgrade> upgradeList;
     [SerializeField]
     List<Upgrade> storeUpgrades = new List<Upgrade>();
+    List<UpgradeButton> upgradeButtons = new List<UpgradeButton>();
 
     public Transform buttonGrid;
 
@@ -19,13 +20,10 @@ public class StoreBehavior : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
 
-    //temp
-    public int money = 100;
-
     private void Start()
     {
         FillStore();
-        SetMoney(money);
+        SetMoney(UpgradesManager.Instance.money);
     }
 
     public void FillStore()
@@ -49,14 +47,16 @@ public class StoreBehavior : MonoBehaviour
                         storeUpgrades.Add(newUpgrades[index]);
 
                         var p = Instantiate(buttonPrefab, buttonGrid);
-                        p.GetComponentInChildren<UpgradeButton>().AddButtonValues(newUpgrades[index].upgradeName, newUpgrades[index].icon, newUpgrades[index].description, newUpgrades[index].cost, this);
+                        var upButton = p.GetComponentInChildren<UpgradeButton>();
+                        upButton.AddButtonValues(newUpgrades[index].upgradeName, newUpgrades[index].icon, newUpgrades[index].description, newUpgrades[index].cost, this);
+                        upgradeButtons.Add(upButton);
 
                         var localIndex = i;
                         var upgradeButton = p.GetComponentInChildren<Button>();
                         upgradeButton.onClick.AddListener(() => BuyUpgrade(localIndex, upgradeButton));
                         break;
                     }
-                }              
+                }
             }
         }
         else
@@ -65,7 +65,9 @@ public class StoreBehavior : MonoBehaviour
             foreach (var upgrade in newUpgrades)
             {
                 var p = Instantiate(buttonPrefab, buttonGrid);
-                p.GetComponentInChildren<UpgradeButton>().AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost, this);
+                var upButton = p.GetComponentInChildren<UpgradeButton>();
+                upButton.AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost, this);
+                upgradeButtons.Add(upButton);
 
                 var localIndex = i;
                 var upgradeButton = p.GetComponentInChildren<Button>();
@@ -76,20 +78,8 @@ public class StoreBehavior : MonoBehaviour
                 storeUpgrades.Add(upgrade);
             }
         }
-
-        //var i = 0;
-        //foreach (var upgrade in upgradeList)
-        //{
-        //    var p = Instantiate(buttonPrefab, buttonGrid);
-        //    p.GetComponentInChildren<UpgradeButton>().AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost, this);
-
-        //    var localIndex = i;
-        //    p.GetComponentInChildren<Button>().onClick.AddListener(() => BuyUpgrade(localIndex));
-
-        //    i++;
-        //}
     }
-    
+
     public void ResumeGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -98,19 +88,18 @@ public class StoreBehavior : MonoBehaviour
     public void BuyUpgrade(int index, Button button)
     {
         print("Pressing button " + index);
-        if (money >= storeUpgrades[index].cost)
+        if (UpgradesManager.Instance.money >= storeUpgrades[index].cost)
         {
             UpgradesManager.Instance.AddUpgrade(storeUpgrades[index]);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = "Bought";
-            button.interactable = false;
+            upgradeButtons[index].bought = true;
             UpdateMoney(-storeUpgrades[index].cost);
         }
     }
 
     public void UpdateMoney(int change)
     {
-        money += change;
-        SetMoney(money);
+        UpgradesManager.Instance.money += change;
+        SetMoney(UpgradesManager.Instance.money);
     }
 
     public void SetMoney(int value)

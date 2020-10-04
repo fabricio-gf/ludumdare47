@@ -82,8 +82,10 @@ public class Character2DController : MonoBehaviour
         
         GetInput();
 
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F))
             TakeDamage(2f);
+#endif
     }
 
     private void FixedUpdate()
@@ -253,5 +255,10 @@ public class Character2DController : MonoBehaviour
             spriteRenderer.color = Color.yellow;
             ChangeChararacterStateTo(CharacterState.Stunned);
         }
+    }
+    
+    public void ResetVelocity()
+    {
+        rbd.velocity = Vector2.zero;
     }
 }
