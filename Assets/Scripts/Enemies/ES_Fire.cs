@@ -22,6 +22,11 @@ public class ES_Fire : EnemyState
     public override void OnStateUpdate()
     {
         base.OnStateUpdate();
+        
+        Vector2 dir = ((Vector2)_playerTransform.position - _enemyController.Rigidbody.position).normalized;
+        float flip = dir.x < 0 ? 1 : -1;
+        var spriteRendererTransform = _enemyController.SpriteRenderer.transform;
+        spriteRendererTransform.localScale = new Vector2(flip, spriteRendererTransform.localScale.y);
 
         if (Time.unscaledTime >= _startTime + _attack.AttackDuration)
         {

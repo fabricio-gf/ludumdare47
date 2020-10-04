@@ -23,11 +23,12 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject storeCanvas;
 
-    public Slider timerSlider;
+    public Image timerBarImg;
     public GameObject waitTime;
     public TMP_Text timeToWaitText;
 
     public GameState gameState = GameState.Waiting;
+    public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
     public enum GameState
     {
         Initiating,
@@ -118,8 +119,7 @@ public class GameManager : MonoBehaviour
     public void InitiateRound()
     {
         remainingTime = startLoopTimeInSeconds;
-        timerSlider.maxValue = startLoopTimeInSeconds;
-        timerSlider.value = startLoopTimeInSeconds;
+        timerBarImg.fillAmount = 1;
         ChangeGameStateTo(GameState.Playing);
     }
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         if (remainingTime >= 0)
         {
             remainingTime -= Time.deltaTime;
-            timerSlider.value = remainingTime;
+            timerBarImg.fillAmount = remainingTimePercent;
         }
         else
         {

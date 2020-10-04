@@ -100,6 +100,8 @@ public class Character2DController : MonoBehaviour
         HandleHandPos();
 
         HandleDodgeCooldown();
+        
+        animator.SetLayerWeight(1, GameManager.Instance.remainingTimePercent <= .3f ? 1 : 0);
     }
 
     void GetInput()
