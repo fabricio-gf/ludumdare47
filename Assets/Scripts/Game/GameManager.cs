@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,10 +20,13 @@ public class GameManager : MonoBehaviour
     public bool isWaiting = true;
     public bool isStoreOpen = false;
 
+    [Header("Canvases")]
     public GameObject[] gameCanvases;
     public GameObject pauseCanvas;
     public GameObject storeCanvas;
+    public GameObject blackScreenCanvas;
 
+    [Space(20)]
     public Image timerBarImg;
     public GameObject waitTime;
     public TMP_Text timeToWaitText;
@@ -31,8 +35,9 @@ public class GameManager : MonoBehaviour
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
     public enum GameState
     {
-        Initiating,
+        PreWaiting,
         Waiting,
+        Initiating,
         Playing,
         Store,
         End
@@ -82,6 +87,8 @@ public class GameManager : MonoBehaviour
     {
         switch (gameState)
         {
+            case GameState.PreWaiting:
+                break;
             case GameState.Waiting:
                 WaitToInitiateRound();
                 break;
@@ -97,6 +104,9 @@ public class GameManager : MonoBehaviour
             case GameState.End:
                 RestartLoop();
                 break;
+            
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -165,9 +175,20 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void QuitGame()
+    
+    public void PressQuit()
     {
-        
+        blackScreenCanvas.SetActive(true);
+        StartCoroutine(QuitDelay());
+    }
+
+    IEnumerator QuitDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
     }
     
     void ChangeGameStateTo(GameState gameState)
