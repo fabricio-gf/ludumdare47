@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8396363886739236351
@@ -342,7 +342,8 @@ MonoBehaviour:
   - {fileID: 5642377766221350829}
   - {fileID: 4827209553318555045}
   _totalLife: 3
-  damageCooldown: 0.3
+  _stunTime: 0.2
+  damageCooldown: 0.8
   _detectionRange: 10
   _minDistToPlayer: 1.5
   _speed: 2
