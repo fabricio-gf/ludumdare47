@@ -48,4 +48,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8210e0bc94a046f43b270bf27ad1b544, type: 2}
   - {fileID: 11400000, guid: 409136494f8610c4483b9f64f8aebef2, type: 2}
   buttonGrid: {fileID: 0}
-  buttonPrefab: {fileID: 6582165846704935590, guid: b35259a833aa02042bdcf1354bcc202b, type: 3}
+  buttonPrefab: {fileID: 8034572881569208171, guid: d2859fce8b8a39e4aa1d405cd1b7c431, type: 3}
+  upgradeDescriptionPanel: {fileID: 0}

@@ -517,6 +517,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &710862280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1281858190, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
+  m_PrefabInstance: {fileID: 1131804907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &762941908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1024,7 +1029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1299265852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1415,6 +1420,10 @@ PrefabInstance:
       propertyPath: buttonGrid
       value: 
       objectReference: {fileID: 1629714781}
+    - target: {fileID: 7296974620376614064, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
+      propertyPath: upgradeDescriptionPanel
+      value: 
+      objectReference: {fileID: 710862280}
     - target: {fileID: 7296974620376614065, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2226,6 +2235,10 @@ PrefabInstance:
       propertyPath: waitTime
       value: 
       objectReference: {fileID: 1299265851}
+    - target: {fileID: 6479778096238190646, guid: d1222b3b2b2ebee4898fc029f6254438, type: 3}
+      propertyPath: timeToWait
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6479778096238190647, guid: d1222b3b2b2ebee4898fc029f6254438, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2327,6 +2340,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 23406860, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23406860, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23406860, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fd665f4d2496872489ff0a505124fed4, type: 3}
     - target: {fileID: 748915768, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2343,6 +2368,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6479778094743242954}
+    - target: {fileID: 748915769, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 748915769, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 748915769, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fd665f4d2496872489ff0a505124fed4, type: 3}
     - target: {fileID: 899315356, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2370,6 +2407,42 @@ PrefabInstance:
     - target: {fileID: 899315356, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 899315356, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 899315356, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35a4784f2e405eb4d803f867f96901a2, type: 3}
+    - target: {fileID: 899315356, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0130a0a16d55c5e40b978d91fe2d60c3, type: 3}
+    - target: {fileID: 899315357, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fd665f4d2496872489ff0a505124fed4, type: 3}
+    - target: {fileID: 899315357, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899315357, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683292735, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7de62301164032d4db9f597e32e74f71, type: 3}
+    - target: {fileID: 1683292735, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683292735, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8631579730079785601, guid: 61cce6a20ec256e48947b58ca357affa, type: 3}
       propertyPath: m_LocalPosition.x

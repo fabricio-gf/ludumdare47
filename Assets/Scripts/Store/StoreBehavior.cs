@@ -12,6 +12,8 @@ public class StoreBehavior : MonoBehaviour
 
     public GameObject buttonPrefab;
 
+    public GameObject upgradeDescriptionPanel;
+
     private void Start()
     {
         FillStore();
@@ -23,10 +25,10 @@ public class StoreBehavior : MonoBehaviour
         foreach (var upgrade in upgradeList)
         {
             var p = Instantiate(buttonPrefab, buttonGrid);
-            p.GetComponent<UpgradeButton>().AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost);
+            p.GetComponentInChildren<UpgradeButton>().AddButtonValues(upgrade.upgradeName, upgrade.icon, upgrade.description, upgrade.cost, this);
            
             var localIndex = i;
-            p.GetComponent<Button>().onClick.AddListener(() => BuyUpgrade(localIndex));
+            p.GetComponentInChildren<Button>().onClick.AddListener(() => BuyUpgrade(localIndex));
             
             i++;
         }

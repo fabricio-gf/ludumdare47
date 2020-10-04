@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
     public float startLoopTimeInSeconds = 60f; 
     public float remainingTime;
 
-    public float timeToWait = 3f;
+    public float timeToWait = 100f;
 
     public bool isGamePaused = false;
     public bool isWaiting = true;
+    public bool isStoreOpen = false;
 
     public GameObject[] gameCanvases;
     public GameObject pauseCanvas;
@@ -80,6 +81,9 @@ public class GameManager : MonoBehaviour
     {
         switch (gameState)
         {
+            case GameState.Waiting:
+                WaitToInitiateRound();
+                break;
             case GameState.Initiating:
                 InitiateRound();
                 break;
@@ -87,10 +91,7 @@ public class GameManager : MonoBehaviour
                 Playing();
                 break;
             case GameState.Store:
-
-                break;
-            case GameState.Waiting:
-                WaitToInitiateRound();
+                OpenStore();
                 break;
             case GameState.End:
                 RestartLoop();
@@ -100,6 +101,9 @@ public class GameManager : MonoBehaviour
 
     void WaitToInitiateRound()
     {
+        if (!waitTime.activeSelf)
+            waitTime.SetActive(true);
+
         timeToWait -= Time.deltaTime;
         int time = (int)timeToWait;
         timeToWaitText.text = time.ToString();
@@ -128,7 +132,21 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ChangeGameStateTo(GameState.End);
+            ChangeGameStateTo(GameState.Store);
+        }
+    }
+
+    void OpenStore()
+    {
+        if (!isStoreOpen)
+        {
+            isStoreOpen = true;
+            Time.timeScale = 0;
+            foreach (var canvas in gameCanvases)
+            {
+                canvas.SetActive(false);
+            }
+            storeCanvas.SetActive(true);
         }
     }
 
