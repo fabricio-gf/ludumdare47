@@ -108,7 +108,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 35a4784f2e405eb4d803f867f96901a2, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 0130a0a16d55c5e40b978d91fe2d60c3, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 0130a0a16d55c5e40b978d91fe2d60c3, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -247,6 +247,7 @@ MonoBehaviour:
   icon: {fileID: 2250122573072849175}
   costText: {fileID: 2217713170256958669}
   descriptionPanelPos: {fileID: 5767825116201968987}
+  button: {fileID: 6829375107410406378}
 --- !u!1 &5929320585466087211
 GameObject:
   m_ObjectHideFlags: 0
