@@ -1020,7 +1020,8 @@ MonoBehaviour:
   - {fileID: 7482385351755888567}
   - {fileID: 8661512491422123327}
   _totalLife: 2
-  damageCooldown: 0.3
+  _stunTime: 0.2
+  damageCooldown: 0.8
   _detectionRange: 8
   _minDistToPlayer: 4
   _speed: 2
