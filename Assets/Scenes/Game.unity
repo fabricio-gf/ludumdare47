@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6083872518394922184, guid: c0927caead7a7e142980de4bec9c522a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8907897772733877098, guid: c0927caead7a7e142980de4bec9c522a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -1139,6 +1143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoreCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3766730682624213282, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3766730682624213286, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1230,6 +1238,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3766730682624213282, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
   m_PrefabInstance: {fileID: 1131804907}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1131804909 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5483437292215170188, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
+  m_PrefabInstance: {fileID: 1131804907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1217415005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1546,6 +1565,10 @@ PrefabInstance:
       propertyPath: upgradeDescriptionPanel
       value: 
       objectReference: {fileID: 710862280}
+    - target: {fileID: 7296974620376614064, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 1131804909}
     - target: {fileID: 7296974620376614065, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2993,6 +3016,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 548723620472926052}
+    - target: {fileID: 6479778096238190646, guid: d1222b3b2b2ebee4898fc029f6254438, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8974487174952241405}
     - target: {fileID: 6479778096238190647, guid: d1222b3b2b2ebee4898fc029f6254438, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -3281,3 +3308,8 @@ PrefabInstance:
       objectReference: {fileID: 1035436491}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d569ddecd579af45aaeaa75a0803bbc, type: 3}
+--- !u!1 &8974487174952241405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1024111102775414020, guid: 7d569ddecd579af45aaeaa75a0803bbc, type: 3}
+  m_PrefabInstance: {fileID: 8974487174952241404}
+  m_PrefabAsset: {fileID: 0}

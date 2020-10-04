@@ -256,4 +256,9 @@ public class Character2DController : MonoBehaviour
             ChangeChararacterStateTo(CharacterState.Stunned);
         }
     }
+    
+    public void ResetVelocity()
+    {
+        rbd.velocity = Vector2.zero;
+    }
 }

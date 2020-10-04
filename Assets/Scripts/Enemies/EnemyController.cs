@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_currentState == null || GameManager.Instance.isWaiting) return;
+        if (_currentState == null || GameManager.Instance.gameState != GameManager.GameState.Playing) return;
         _currentState.OnStateUpdate();
     }
 
@@ -127,4 +127,5 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
 }
