@@ -10,7 +10,7 @@ public class SwordAttacking : MonoBehaviour
     public Transform attackPoint;
     public GameObject swordSweep;
 
-    public float attackRadius = 1f;
+    //public float attackRadius = 1f;
 
     private Vector2 mousePos;
 
@@ -25,7 +25,7 @@ public class SwordAttacking : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.isGamePaused) return;
+        if (GameManager.Instance.isGamePaused || GameManager.Instance.isWaiting) return;
         
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
@@ -42,9 +42,8 @@ public class SwordAttacking : MonoBehaviour
 
     void HandleAttackPos()
     {
-        Vector2 lookDir = (mousePos - rbd.position).normalized;
-        attackPoint.position = rbd.position + lookDir * attackRadius;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        Vector2 lookDir = (mousePos - (Vector2)attackPoint.position).normalized;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         attackPoint.rotation = rotation;
     }
