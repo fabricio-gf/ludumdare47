@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using DG.Tweening;
 
 public class Character2DController : MonoBehaviour
 {
     public float startLife = 6f;
     private float currentLife;
+
+    public float damageCooldown = 0.5f;
+    private float lastDamageTime;
 
     public float startStunnedTime = 3f;
     private float stunnedTime;
@@ -204,7 +208,6 @@ public class Character2DController : MonoBehaviour
         else
         {
             currentLife = startLife;
-            var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = Color.white;
             ChangeChararacterStateTo(CharacterState.Normal);
         }
@@ -234,11 +237,17 @@ public class Character2DController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentLife -= damage;
-        if (currentLife <= 0)
+        if (Time.unscaledTime < lastDamageTime + damageCooldown) return;
+
+        if (currentLife - damage > 0)
+        {
+            lastDamageTime = Time.unscaledTime;
+            currentLife -= damage;
+            spriteRenderer.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo);   
+        }
+        else
         {
             stunnedTime = startStunnedTime;
-            var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = Color.yellow;
             ChangeChararacterStateTo(CharacterState.Stunned);
         }

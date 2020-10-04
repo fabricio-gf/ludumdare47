@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
     private Animator _animator;
     public Animator Animator => _animator;
 
-    public Vector2 PlayerPos => EnemyBlackboard.Instance.player.transform.position;
+    public Vector2 PlayerPos => EnemyBlackboard.Instance._player.transform.position;
     public Vector2 PlayerDir => (PlayerPos - Rigidbody.position).normalized;
     
     protected virtual void Start()
