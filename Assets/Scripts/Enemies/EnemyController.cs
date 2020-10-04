@@ -15,8 +15,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected float _detectionRange;
     public float DetectionRange => _detectionRange;
 
+    [SerializeField] protected float _minDistToPlayer = 1.5f;
+    public float MinDistToPlayer => _minDistToPlayer;
+
     [SerializeField] protected float _speed;
     public float Speed => _speed;
+    
+    [SerializeField] private AttackDefinition _attack;
+    public AttackDefinition Attack => _attack;
+    
+    
     
     private Rigidbody2D _rb;
     public Rigidbody2D Rigidbody => _rb;
@@ -61,12 +69,21 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, _detectionRange);
+        var position = transform.position;
+        Gizmos.DrawWireSphere(position, _detectionRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(position, _minDistToPlayer);
     }
     
     public bool PlayerOnDetectionRange()
     {
         var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
-        return dist <= DetectionRange && dist >= 1.5f;
+        return dist <= DetectionRange && dist >= MinDistToPlayer;
+    }
+    
+    public bool PlayerOnAttackRange()
+    {
+        var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
+        return dist <= _attack.AttackRange;
     }
 }
