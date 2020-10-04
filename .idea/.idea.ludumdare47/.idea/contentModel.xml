@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\alexa\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\alexa\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\ReSharperHost\v202\SolutionCaches\_ludumdare47.334321699.00" t="ExcludeRecursive" />
-    <e p="C:\Users\alexa\Documents\Unity Projects\ludumdare47" t="IncludeRecursive">
+    <e p="C:\_PROJECTS\ludumdare47\ludumdare47" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="External" t="Include">
@@ -20,15 +18,72 @@
             <e p="readme.txt" t="Include" />
           </e>
         </e>
+        <e p="Fonts" t="Include">
+          <e p="WashYourHands" t="Include">
+            <e p="More Info.txt" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
+          <e p="Audio" t="Include">
+            <e p="AudioManager.cs" t="Include" />
+            <e p="EffectsController.cs" t="Include" />
+            <e p="MusicController.cs" t="Include" />
+          </e>
+          <e p="Bullet.cs" t="Include" />
+          <e p="Character2DController.cs" t="Include" />
           <e p="Enemies" t="Include">
+            <e p="AttackDefinition.cs" t="Include" />
+            <e p="Damager.cs" t="Include" />
             <e p="EnemyBlackboard.cs" t="Include" />
             <e p="EnemyController.cs" t="Include" />
+            <e p="EnemyMelee.cs" t="Include" />
+            <e p="EnemyRanged.cs" t="Include" />
             <e p="EnemyState.cs" t="Include" />
+            <e p="ES_Attack.cs" t="Include" />
+            <e p="ES_Chase.cs" t="Include" />
+            <e p="ES_Fire.cs" t="Include" />
+            <e p="ES_Hurt.cs" t="Include" />
+            <e p="ES_Idle.cs" t="Include" />
+          </e>
+          <e p="Game" t="Include">
+            <e p="GameManager.cs" t="Include" />
+            <e p="Toilet.cs" t="Include" />
+          </e>
+          <e p="Loading" t="Include">
+            <e p="AddLoadBehaviourToButton.cs" t="Include" />
+            <e p="CurrentScene.cs" t="Include" />
+            <e p="SceneLoader.cs" t="Include" />
           </e>
           <e p="LoadingBehavior.cs" t="Include" />
           <e p="MenuBehavior.cs" t="Include" />
+          <e p="Shooting.cs" t="Include" />
+          <e p="SortableSprite.cs" t="Include" />
+          <e p="SpritesSorter.cs" t="Include" />
+          <e p="Store" t="Include">
+            <e p="StoreBehavior.cs" t="Include" />
+            <e p="Upgrades" t="Include">
+              <e p="Upgrade.cs" t="Include" />
+              <e p="UpgradeButton.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Sword.cs" t="Include" />
+          <e p="SwordAttacking.cs" t="Include" />
         </e>
+        <e p="Sprites" t="Include">
+          <e p="bb skelly" t="Include">
+            <e p="_spritesheets.txt" t="Include" />
+          </e>
+          <e p="big skelly" t="Include">
+            <e p="_spritesheets.txt" t="Include" />
+          </e>
+          <e p="Protag" t="Include">
+            <e p="_spritesheets.txt" t="Include" />
+          </e>
+          <e p="skelly" t="Include">
+            <e p="_spritesheets.txt" t="Include" />
+          </e>
+        </e>
+        <e p="StoreUpgrade.cs" t="Include" />
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />
@@ -66,5 +121,7 @@
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
+    <e p="C:\Users\Fabricio\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Fabricio\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_LudumDare47.763490380.00" t="ExcludeRecursive" />
   </component>
 </project>

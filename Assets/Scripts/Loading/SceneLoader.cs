@@ -95,8 +95,12 @@ public class SceneLoader : MonoBehaviour
 
         AudioManager.instance.musicController.ForceAddListener();
         AudioManager.instance.effectsController.ForceAddListener();
-        
-        GameManager.Instance.InitRound();
+
+        // i know this is bad don't worry about it
+        if (previousSceneName == "Menu")
+        {
+            GameManager.Instance.StartCountdown();
+        }
     }
 
 }

@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ddec01c4635544092ad31262dbae91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicController: {fileID: 0}
+  effectsController: {fileID: 0}
 --- !u!114 &2332401095545210221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,8 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df4aba0ee829af429eb68ccfc2f8bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourcePrefab: {fileID: 4021270394578264178, guid: b0ad69f0918fee946bfd38ee8bffe385,
-    type: 3}
+  SourcePrefab: {fileID: 4021270394578264178, guid: b0ad69f0918fee946bfd38ee8bffe385, type: 3}
   ClipList: []
   TagList: []
 --- !u!114 &2332401095545210222
@@ -73,9 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3890713e40359874aa90ba0b1d4bb835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourcePrefab: {fileID: 3291666879231035318, guid: 3dcab0541fa99b741816f31edad2aa88,
-    type: 3}
-  InitialMusicTrack: {fileID: 0}
-  LoopDuration: 0
-  FadeDuration: 0
-  BlendDuration: 0
+  SourcePrefab: {fileID: 3291666879231035318, guid: 3dcab0541fa99b741816f31edad2aa88, type: 3}
+  InitialMusicTrack: {fileID: 8300000, guid: 701f6151b70215b4e9ebfc8992059942, type: 3}
+  LoopDuration: 198.139
+  FadeDuration: 2
+  BlendDuration: 2

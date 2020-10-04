@@ -58,6 +58,7 @@ public class MusicController : MonoBehaviour
         {
             Source1.mute = true;
             Source2.mute = true;
+            GameObject.Find("MusicMute")?.GetComponent<Toggle>().SetIsOnWithoutNotify(true);
         }
     }
 
@@ -65,12 +66,20 @@ public class MusicController : MonoBehaviour
     {
         MusicMuteToggle = GameObject.Find("MusicMute")?.GetComponent<Toggle>();
         MusicMuteToggle?.onValueChanged.AddListener((bool mute) => ToggleMuteMusic(mute));
+        if (Source1 != null && Source1.mute == true)
+        {
+            MusicMuteToggle?.SetIsOnWithoutNotify(true);
+        }
     }
 
     void AddListenerToMuteButton(Scene scene, LoadSceneMode mode)
     {
         MusicMuteToggle = GameObject.Find("MusicMute")?.GetComponent<Toggle>();
         MusicMuteToggle?.onValueChanged.AddListener((bool mute) => ToggleMuteMusic(mute));
+        if (Source1 != null && Source1.mute == true)
+        {
+            MusicMuteToggle?.SetIsOnWithoutNotify(true);
+        }
     }
 
     public void ChangeTrackInstantly(AudioClip newTrack, float loopTime)
@@ -174,6 +183,11 @@ public class MusicController : MonoBehaviour
         yield return new WaitForSeconds(time);
         newSource.clip = clip;
         newSource.Play();
+        CallLoopTrackCoroutine(clip, newSource, currentSource, time);
+    }
+
+    public void CallLoopTrackCoroutine(AudioClip clip, AudioSource currentSource, AudioSource newSource, float time)
+    {
         StartCoroutine(LoopTrackAtTime(clip, newSource, currentSource, time));
     }
 }

@@ -19,6 +19,7 @@ public class MenuBehavior : MonoBehaviour
     public GameObject backButton;
 
     [Header("Button Images")] 
+    public Image playButton;
     public Image instructionsButton;
     public Image creditsButton;
 
@@ -26,6 +27,13 @@ public class MenuBehavior : MonoBehaviour
     public Sprite pressedButton;
     public Sprite unpressedButton;
 
+    public Sprite eatenCake;
+
+    public void ChangeCakeSprite()
+    {
+        playButton.sprite = eatenCake;
+    }
+    
     public void PressInstructions()
     {
         bool state = !instructionsCanvas.activeSelf;
