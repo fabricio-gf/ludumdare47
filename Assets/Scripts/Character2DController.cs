@@ -34,6 +34,7 @@ public class Character2DController : MonoBehaviour
     private Vector2 rollDir;
     private Vector2 mousePos;
     private Vector3 mousePosToScreen;
+    private Vector3 handPivotPosToScreen;
     private float handDist;
 
     private bool dodgeRoll;
@@ -120,6 +121,7 @@ public class Character2DController : MonoBehaviour
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePosToScreen = cam.ScreenToViewportPoint(Input.mousePosition);
+        handPivotPosToScreen = cam.WorldToViewportPoint(handPivot.position);
     }
 
     void HandleAnimation()
@@ -133,7 +135,7 @@ public class Character2DController : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
-        if (mousePosToScreen.x > 0.5f)
+        if (mousePosToScreen.x > handPivotPosToScreen.x)
         {
             handSpriteRenderer.flipX = false;
         }

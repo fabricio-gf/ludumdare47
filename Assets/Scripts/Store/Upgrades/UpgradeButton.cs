@@ -17,6 +17,21 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public RectTransform descriptionPanelPos;
 
+    public Button button;
+
+    private void Update()
+    {
+        UpdateButtonState();
+    }
+
+    void UpdateButtonState()
+    {
+        if (StoreBehavior.money < int.Parse(costText.text) && button.interactable == true)
+            button.interactable = false;
+        else if (StoreBehavior.money >= int.Parse(costText.text) && button.interactable == false)
+            button.interactable = true;
+    }
+
     public void AddButtonValues(string _name, Sprite _icon, string _description, int _cost, StoreBehavior storeBehavior)
     {
         nameText.text = _name;
