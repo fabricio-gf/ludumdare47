@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class ES_Chase : EnemyState
@@ -13,7 +14,7 @@ public class ES_Chase : EnemyState
     public override void OnStateUpdate()
     {
         base.OnStateUpdate();
-        
+
         if (!_enemyController.PlayerOnDetectionRange()) _enemyController.ChangeState(_enemyController.AllStates[(int)EnemyBlackboard.EnemyStates.idle]);
         
         _enemyController.HandleFlip();
