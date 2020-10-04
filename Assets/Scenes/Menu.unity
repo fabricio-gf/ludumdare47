@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2377,7 +2377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2406,7 +2406,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1401798545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1935240891}
+        m_TargetAssemblyTypeName: MenuBehavior, Assembly-CSharp
+        m_MethodName: ChangeCakeSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1401798545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2648,7 +2660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -2919,10 +2931,12 @@ MonoBehaviour:
   creditsCanvas: {fileID: 1620691110}
   blackScreenCanvas: {fileID: 2029701195}
   backButton: {fileID: 1073294613}
+  playButton: {fileID: 1401798545}
   instructionsButton: {fileID: 1389162127}
   creditsButton: {fileID: 1441200786}
   pressedButton: {fileID: 21300000, guid: 0130a0a16d55c5e40b978d91fe2d60c3, type: 3}
   unpressedButton: {fileID: 21300000, guid: fd665f4d2496872489ff0a505124fed4, type: 3}
+  eatenCake: {fileID: 21300000, guid: c6303e4fea9f8ec4ca61cbe8aab570ec, type: 3}
 --- !u!4 &1935240892
 Transform:
   m_ObjectHideFlags: 0
@@ -2987,22 +3001,6 @@ PrefabInstance:
     - target: {fileID: 2332401095545210219, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
-      propertyPath: InitialMusicTrack
-      value: 
-      objectReference: {fileID: 8300000, guid: 701f6151b70215b4e9ebfc8992059942, type: 3}
-    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
-      propertyPath: LoopDuration
-      value: 198.139
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
-      propertyPath: FadeDuration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332401095545210222, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
-      propertyPath: BlendDuration
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2332401095545210223, guid: e6a159b822f6a2146b1888a2767feb17, type: 3}
       propertyPath: m_Name

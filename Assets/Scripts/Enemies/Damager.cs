@@ -35,6 +35,7 @@ public class Damager : MonoBehaviour
                 if (other.CompareTag("Player")) PlayerController.TakeDamage(_enemyController.Attack.AttackDamage);
                 break;
             case DamagerType.player:
+                if (other.CompareTag("Enemy")) other.GetComponentInParent<EnemyController>().TakeDamage(1f);
                 break;
         }
     }

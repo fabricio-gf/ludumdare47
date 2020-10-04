@@ -78,7 +78,7 @@ public class Character2DController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.isGamePaused || GameManager.Instance.isWaiting) return;
+        if (GameManager.Instance.isGamePaused || GameManager.Instance.gameState != GameManager.GameState.Playing) return;
         
         GetInput();
 
@@ -239,7 +239,7 @@ public class Character2DController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (Time.unscaledTime < lastDamageTime + damageCooldown) return;
+        if (Time.unscaledTime < lastDamageTime + damageCooldown || charState != CharacterState.Normal) return;
 
         if (currentLife - damage > 0)
         {

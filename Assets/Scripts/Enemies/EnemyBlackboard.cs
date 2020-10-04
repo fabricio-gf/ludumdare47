@@ -27,7 +27,7 @@ public class EnemyBlackboard : MonoBehaviour
 
     public enum EnemyStates
     {
-        idle = 0, chase = 1, attack = 2, fire = 3,
+        idle = 0, chase = 1, attack = 2, fire = 3, hurt = 4, 
     }
 
     private void OnEnable()

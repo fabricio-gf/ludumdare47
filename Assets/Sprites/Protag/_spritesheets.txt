@@ -1,2 +1,2 @@
-idle.png,512,512,4
-walk-suffering-effect.png,512,512,6
+idle-sofrimento.png,512,512,4
+dying.png,512,512,8

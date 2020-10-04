@@ -25,7 +25,7 @@ public class SwordAttacking : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.isGamePaused || GameManager.Instance.isWaiting) return;
+        if (GameManager.Instance.isGamePaused || GameManager.Instance.gameState != GameManager.GameState.Playing) return;
         
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 

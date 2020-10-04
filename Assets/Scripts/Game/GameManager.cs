@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public Image timerBarImg;
     public GameObject waitTime;
     public TMP_Text timeToWaitText;
+    
+    [SerializeField] private Toilet toilet = null;
+    private bool isCritical = false;  
 
     public GameState gameState = GameState.Waiting;
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
@@ -59,28 +62,33 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isGamePaused = !isGamePaused;
-            if (isGamePaused)
-            {
-                Time.timeScale = 0;
-                foreach (var canvas in gameCanvases)
-                {
-                    canvas.SetActive(false);
-                }
-                pauseCanvas.SetActive(true);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                pauseCanvas.SetActive(false);
-                foreach (var canvas in gameCanvases)
-                {
-                    canvas.SetActive(true);
-                }
-            }
+            TogglePause();
         }
 
         HandleGameState();
+    }
+
+    void TogglePause()
+    {
+        isGamePaused = !isGamePaused;
+        if (isGamePaused)
+        {
+            Time.timeScale = 0;
+            foreach (var canvas in gameCanvases)
+            {
+                canvas.SetActive(false);
+            }
+            pauseCanvas.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseCanvas.SetActive(false);
+            foreach (var canvas in gameCanvases)
+            {
+                canvas.SetActive(true);
+            }
+        }
     }
 
     void HandleGameState()
@@ -116,7 +124,7 @@ public class GameManager : MonoBehaviour
             waitTime.SetActive(true);
 
         timeToWait -= Time.deltaTime;
-        int time = (int)timeToWait;
+        int time = Mathf.CeilToInt(timeToWait);
         timeToWaitText.text = time.ToString();
         if (timeToWait <= 0)
         {
@@ -124,6 +132,11 @@ public class GameManager : MonoBehaviour
             waitTime.SetActive(false);
             ChangeGameStateTo(GameState.Initiating);
         }
+    }
+    
+    public void StartCountdown()
+    {
+        ChangeGameStateTo(GameState.Waiting);
     }
 
     public void InitiateRound()
@@ -139,6 +152,17 @@ public class GameManager : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;
             timerBarImg.fillAmount = remainingTimePercent;
+
+            if (remainingTimePercent <= 0.3f && !isCritical)
+            {
+                isCritical = true;
+                toilet.StartShaking();
+            }
+            else if (remainingTimePercent > 0.3f && isCritical)
+            {
+                isCritical = false;
+                toilet.StopShaking();
+            }
         }
         else
         {
@@ -152,12 +176,21 @@ public class GameManager : MonoBehaviour
         {
             isStoreOpen = true;
             Time.timeScale = 0;
-            foreach (var canvas in gameCanvases)
-            {
-                canvas.SetActive(false);
-            }
-            storeCanvas.SetActive(true);
+
+            print("Starting end round delay");
+            StartCoroutine(EndRoundDelay());
         }
+    }
+
+    IEnumerator EndRoundDelay()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        
+        foreach (var canvas in gameCanvases)
+        {
+            canvas.SetActive(false);
+        }
+        storeCanvas.SetActive(true);
     }
 
     void RestartLoop()
@@ -165,26 +198,20 @@ public class GameManager : MonoBehaviour
         SceneLoader.Instance.RestartCurrentScene();
     }
 
-    public void ResumeGame()
+    public void PressResume()
+    {
+        TogglePause();
+    }
+
+    public void CloseStore()
     {
         
     }
 
-    public void GoToMainMenu()
-    {
-        
-    }
-
-    
     public void PressQuit()
     {
         blackScreenCanvas.SetActive(true);
         StartCoroutine(QuitDelay());
-    }
-
-    public void InitRound()
-    {
-        ChangeGameStateTo(GameState.Waiting);
     }
 
     IEnumerator QuitDelay()
