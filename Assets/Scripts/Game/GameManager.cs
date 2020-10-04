@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public GameObject player;
+
     public float startLoopTimeInSeconds = 60f; 
     public float remainingTime;
 
     public float timeToWait = 100f;
+    private float currentTime = 0;
 
     public bool isGamePaused = false;
     public bool isWaiting = true;
@@ -56,6 +59,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady += StartCountdown;
+        else StartCountdown();
+    }
+
+    private void OnDisable()
+    {
+        if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady -= StartCountdown;
     }
 
     private void Update()
@@ -120,13 +131,17 @@ public class GameManager : MonoBehaviour
 
     void WaitToInitiateRound()
     {
-        if (!waitTime.activeSelf)
-            waitTime.SetActive(true);
+        print("Starting initial time");
 
-        timeToWait -= Time.deltaTime;
-        int time = Mathf.CeilToInt(timeToWait);
-        timeToWaitText.text = time.ToString();
-        if (timeToWait <= 0)
+        if (!waitTime.activeSelf)
+        {
+            waitTime.SetActive(true);
+            currentTime = timeToWait;
+        }
+
+        currentTime -= Time.deltaTime;
+        timeToWaitText.text = Mathf.CeilToInt(currentTime).ToString();
+        if (currentTime <= 0)
         {
             isWaiting = false;
             waitTime.SetActive(false);
@@ -141,6 +156,8 @@ public class GameManager : MonoBehaviour
 
     public void InitiateRound()
     {
+        print("Initiating round");
+        
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
         ChangeGameStateTo(GameState.Playing);
@@ -176,15 +193,23 @@ public class GameManager : MonoBehaviour
         {
             isStoreOpen = true;
             Time.timeScale = 0;
-
+            
             print("Starting end round delay");
+
+            Animator playerAnimator = player.GetComponent<Animator>();
+            playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            
+            playerAnimator.Play("Dying");
+            
             StartCoroutine(EndRoundDelay());
         }
     }
 
     IEnumerator EndRoundDelay()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(3f);
+
+        player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
         
         foreach (var canvas in gameCanvases)
         {
@@ -205,7 +230,46 @@ public class GameManager : MonoBehaviour
 
     public void CloseStore()
     {
+        blackScreenCanvas.SetActive(true);
+        StartCoroutine(FadeToBlackOnResetGame());
+    }
+
+    IEnumerator FadeToBlackOnResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1f);
         
+        //RESET GAME STUFF HERE
+        foreach (var canvas in gameCanvases)
+        {
+            canvas.SetActive(true);
+        }
+        storeCanvas.SetActive(false);
+        
+        remainingTime = startLoopTimeInSeconds;
+        timerBarImg.fillAmount = 1;
+        
+        player.GetComponent<Character2DController>().ResetVelocity();
+        player.GetComponent<Animator>().Play("Idle");
+        
+        //delete enemies
+        //reset spawner
+        
+        //
+
+        blackScreenCanvas.GetComponent<Animator>().SetTrigger("FadeOut");
+        StartCoroutine(FadeBackOnResetGame());
+        
+    }
+
+    IEnumerator FadeBackOnResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        
+        blackScreenCanvas.SetActive(false);
+        
+        Time.timeScale = 1;
+        
+        StartCountdown();
     }
 
     public void PressQuit()
