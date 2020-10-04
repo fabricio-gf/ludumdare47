@@ -15,6 +15,7 @@ public class EnemyBlackboard : MonoBehaviour
             {
                 var enemyBlackboard = new GameObject("EnemyBlackboard");
                 var newInstance = enemyBlackboard.AddComponent<EnemyBlackboard>();
+                enemyBlackboard.AddComponent<EnemySpawner>();
                 _instance = newInstance;
             }
             return _instance;
@@ -35,4 +36,6 @@ public class EnemyBlackboard : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _playerController = _player.GetComponent<Character2DController>();
     }
+
+    public void Initialize() {}
 }

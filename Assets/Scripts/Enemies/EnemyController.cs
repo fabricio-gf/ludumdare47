@@ -127,7 +127,9 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        var deathTime = 0.15f;
+        Destroy(gameObject, deathTime);
+        transform.DOScale(Vector3.zero, deathTime);
     }
     
 }
