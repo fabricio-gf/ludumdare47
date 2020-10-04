@@ -1,0 +1,2 @@
+skelao-idle.png,512,512,2
+skelao-walk.png,512,512,4
