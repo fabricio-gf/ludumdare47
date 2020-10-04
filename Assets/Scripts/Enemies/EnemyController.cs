@@ -15,6 +15,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] protected float _totalLife;
     public float TotalLife => _totalLife;
 
+    [SerializeField] protected float _stunTime = 0.2f;
+    public float StunTime => _stunTime;
+
     private float _currentLife;
     
     public float damageCooldown = 0.3f;
@@ -114,7 +117,6 @@ public class EnemyController : MonoBehaviour
         {
             lastDamageTime = Time.unscaledTime;
             _currentLife -= damage;
-            SpriteRenderer.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo);
             ChangeState(AllStates[(int)EnemyBlackboard.EnemyStates.hurt]);
         }
         else
