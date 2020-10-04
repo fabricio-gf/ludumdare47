@@ -18,14 +18,9 @@ public class ES_Chase : EnemyState
 
         Vector2 dir = ((Vector2)_playerTransform.position - _enemyController.Rigidbody.position).normalized;
         
-        if (dir.x < 0)
-        {
-            _enemyController.SpriteRenderer.flipX = true;
-        }
-        else if (dir.x > 0)
-        {
-            _enemyController.SpriteRenderer.flipX = false;
-        }
+        float flip = dir.x < 0 ? 1 : -1;
+        var spriteRendererTransform = _enemyController.SpriteRenderer.transform;
+        spriteRendererTransform.localScale = new Vector2(flip, spriteRendererTransform.localScale.y);
         
         _enemyController.Rigidbody.MovePosition(_enemyController.Rigidbody.position + dir * (_enemyController.Speed * Time.fixedDeltaTime));
     }

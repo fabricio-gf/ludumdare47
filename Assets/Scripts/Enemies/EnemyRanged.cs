@@ -9,6 +9,12 @@ public class EnemyRanged : EnemyController
 
     [HideInInspector] public float _lastAttackTime;
 
+    [SerializeField] private Transform _attackPivot;
+    public Transform AttackPivot => _attackPivot;
+
+    [SerializeField] private Transform[] _attackSprites;
+    public Transform[] AttackSprites => _attackSprites;
+
     protected override void Start()
     {
         base.Start();
@@ -18,9 +24,9 @@ public class EnemyRanged : EnemyController
     {
         base.Update();
 
-        if (PlayerOnAttackRange())
+        if (PlayerOnAttackRange() && Mathf.Abs(transform.position.y - EnemyBlackboard.Instance.player.transform.position.y) <= 1.3f)
         {
-            if (Time.unscaledTime >= _lastAttackTime + AttackCooldown) ChangeState(AllStates[(int)EnemyBlackboard.EnemyStates.attack]);
+            if (Time.unscaledTime >= _lastAttackTime + AttackCooldown) ChangeState(AllStates[(int)EnemyBlackboard.EnemyStates.fire]);
         }
     }
 
