@@ -15,4 +15,4 @@ MonoBehaviour:
   upgradeName: Flaming Muffin
   icon: {fileID: 21300000, guid: d3521fc4004dd48458e35ee95204fa55, type: 3}
   description: Packs a spicy punch to your strikes! The Kight deals more damage.
-  cost: 500
+  cost: 50
