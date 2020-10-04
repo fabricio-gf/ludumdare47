@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public Animator playerAnimator;
+
     public float startLoopTimeInSeconds = 60f; 
     public float remainingTime;
 
@@ -176,15 +178,21 @@ public class GameManager : MonoBehaviour
         {
             isStoreOpen = true;
             Time.timeScale = 0;
-
+            
             print("Starting end round delay");
+
+            playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            playerAnimator.SetTrigger("Died");
+            
             StartCoroutine(EndRoundDelay());
         }
     }
 
     IEnumerator EndRoundDelay()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(3f);
+
+        playerAnimator.updateMode = AnimatorUpdateMode.Normal;
         
         foreach (var canvas in gameCanvases)
         {
@@ -205,7 +213,25 @@ public class GameManager : MonoBehaviour
 
     public void CloseStore()
     {
+        blackScreenCanvas.SetActive(true);
+        StartCoroutine(FadeBackOnResetGame());
+    }
+
+    IEnumerator FadeToBlackOnResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1f);
         
+        //RESET GAME STUFF HERE
+
+        blackScreenCanvas.GetComponent<Animator>().SetTrigger("FadeOut");
+        StartCoroutine(FadeBackOnResetGame());
+    }
+
+    IEnumerator FadeBackOnResetGame()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        
+        StartCountdown();
     }
 
     public void PressQuit()

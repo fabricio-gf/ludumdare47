@@ -82,8 +82,10 @@ public class Character2DController : MonoBehaviour
         
         GetInput();
 
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F))
             TakeDamage(2f);
+#endif
     }
 
     private void FixedUpdate()
