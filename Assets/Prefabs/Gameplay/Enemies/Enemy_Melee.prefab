@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 778760285567610961}
   - component: {fileID: 4508300575831315100}
   - component: {fileID: 2638638529431035385}
+  - component: {fileID: 3911980345907029029}
+  - component: {fileID: 4249801873904242221}
   m_Layer: 0
   m_Name: States_Holder
   m_TagString: Untagged
@@ -72,6 +74,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyController: {fileID: 0}
+--- !u!114 &3911980345907029029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360886070521606459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ca9a91236db524d98d9e13ad3b3f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyController: {fileID: 0}
+--- !u!114 &4249801873904242221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360886070521606459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad86eb780f2d7b41b460f5927f3bfee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyController: {fileID: 0}
 --- !u!1 &1437043593153379564
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +114,7 @@ GameObject:
   - component: {fileID: 1437043593153379560}
   m_Layer: 0
   m_Name: Enemy_Melee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +151,11 @@ MonoBehaviour:
   - {fileID: 778760285567610961}
   - {fileID: 4508300575831315100}
   - {fileID: 2638638529431035385}
-  _detectionRange: 6
+  - {fileID: 3911980345907029029}
+  - {fileID: 4249801873904242221}
+  _totalLife: 3
+  damageCooldown: 0.3
+  _detectionRange: 5
   _minDistToPlayer: 1.5
   _speed: 1.5
   _attack: {fileID: 11400000, guid: 8e1fe6fc6ba7ee04c9eabb99775bdbfd, type: 2}

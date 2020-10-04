@@ -237,7 +237,7 @@ public class Character2DController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (Time.unscaledTime < lastDamageTime + damageCooldown) return;
+        if (Time.unscaledTime < lastDamageTime + damageCooldown || charState != CharacterState.Normal) return;
 
         if (currentLife - damage > 0)
         {
