@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradesManager : MonoBehaviour
 {
+    public int money;
     public List<Upgrade> ownedUpgrades = new List<Upgrade>();
 
     private static UpgradesManager _instance;

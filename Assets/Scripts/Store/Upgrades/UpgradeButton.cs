@@ -13,11 +13,13 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private string descriptionText;
 
-    private StoreBehavior StoreBehavior;
-
     public RectTransform descriptionPanelPos;
 
     public Button button;
+
+    public bool bought = false;
+
+    private StoreBehavior storeBehavior;
 
     private void Update()
     {
@@ -26,36 +28,44 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void UpdateButtonState()
     {
-        if (StoreBehavior.money < int.Parse(costText.text) && button.interactable == true)
+        if (bought)
+        {
+            var text = button.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = "Bought";
             button.interactable = false;
-        else if (StoreBehavior.money >= int.Parse(costText.text) && button.interactable == false)
-            button.interactable = true;
+        }
+        else
+        {
+            if (UpgradesManager.Instance.money < int.Parse(costText.text) && button.interactable == true)
+                button.interactable = false;
+            else if (UpgradesManager.Instance.money >= int.Parse(costText.text) && button.interactable == false)
+                button.interactable = true;
+        }
     }
 
-    public void AddButtonValues(string _name, Sprite _icon, string _description, int _cost, StoreBehavior storeBehavior)
+    public void AddButtonValues(string _name, Sprite _icon, string _description, int _cost, StoreBehavior _storeBehavior)
     {
         nameText.text = _name;
         icon.sprite = _icon;
         descriptionText = _description;
         costText.text = _cost.ToString();
-
-        StoreBehavior = storeBehavior;
+        storeBehavior = _storeBehavior;
     }
 
     void ShowUpgradeDescription(Vector2 pos)
     {
-        TMP_Text[] texts = StoreBehavior.upgradeDescriptionPanel.GetComponentsInChildren<TMP_Text>();
+        TMP_Text[] texts = storeBehavior.upgradeDescriptionPanel.GetComponentsInChildren<TMP_Text>();
         texts[0].text = nameText.text;
         texts[1].text = descriptionText;
-        RectTransform transform = StoreBehavior.upgradeDescriptionPanel.GetComponent<RectTransform>();
+        RectTransform transform = storeBehavior.upgradeDescriptionPanel.GetComponent<RectTransform>();
 
         transform.position = descriptionPanelPos.position;
-        StoreBehavior.upgradeDescriptionPanel.SetActive(true);
+        storeBehavior.upgradeDescriptionPanel.SetActive(true);
     }
 
     void CloseUpgradeDescription()
     {
-        StoreBehavior.upgradeDescriptionPanel.SetActive(false);
+        storeBehavior.upgradeDescriptionPanel.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
