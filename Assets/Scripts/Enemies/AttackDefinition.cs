@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttack", menuName = "Attack Definition")] 
+[CreateAssetMenu(fileName = "NewAttack", menuName = "Attack Definition")]
+[System.Serializable]
 public class AttackDefinition : ScriptableObject
 {
     [SerializeField] private AnimationClip _attackAnim;

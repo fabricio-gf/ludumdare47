@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
 
     private Animator _animator;
     public Animator Animator => _animator;
+
+    public Vector2 PlayerPos => EnemyBlackboard.Instance.player.transform.position;
+    public Vector2 PlayerDir => (PlayerPos - Rigidbody.position).normalized;
     
     protected virtual void Start()
     {
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (_currentState == null) return;
+        if (_currentState == null || GameManager.Instance.isWaiting) return;
         _currentState.OnStateUpdate();
     }
 
@@ -77,13 +80,20 @@ public class EnemyController : MonoBehaviour
     
     public bool PlayerOnDetectionRange()
     {
-        var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
+        var dist = Vector2.Distance(PlayerPos, transform.position);
         return dist <= DetectionRange && dist >= MinDistToPlayer;
     }
     
     public bool PlayerOnAttackRange()
     {
-        var dist = Vector2.Distance(EnemyBlackboard.Instance.player.position, transform.position);
+        var dist = Vector2.Distance(PlayerPos, transform.position);
         return dist <= _attack.AttackRange;
+    }
+
+    public void HandleFlip()
+    {
+        float flip = PlayerDir.x < 0 ? 1 : -1;
+        var spriteRendererTransform = SpriteRenderer.transform;
+        spriteRendererTransform.localScale = new Vector2(flip, spriteRendererTransform.localScale.y);
     }
 }
