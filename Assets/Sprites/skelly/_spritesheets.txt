@@ -1,1 +1,2 @@
-skelly-attack.png,512,444,4
+skelly-attack.png,512,512,4
+walk.png,512,512,2

@@ -1,5 +1,1 @@
-walk%20cycle.png,512,512,6
-walk%20cycle%202.png,512,512,6
-walk-cycle-2.png,512,512,6
-Idle.png,512,509,4
-walk%20cycle%20suffering.png,512,512,6
+idle.png,512,512,4
