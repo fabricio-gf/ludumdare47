@@ -108,7 +108,7 @@ public class Character2DController : MonoBehaviour
 
     void HandleMovement()
     {
-        rbd.MovePosition(rbd.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rbd.MovePosition(rbd.position + movement.normalized * (moveSpeed * Time.fixedDeltaTime));
 
         if (dodgeRoll && canRoll)
         {

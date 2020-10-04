@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8267930611990873503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.05, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 8267930613727943740}
   m_Father: {fileID: 8267930613787137232}
@@ -56,8 +56,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8267930612133772418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.05, y: -4.58, z: 0}
-  m_LocalScale: {x: 0.27876687, y: 0.27876687, z: 0.27876687}
+  m_LocalPosition: {x: -1.525, y: -2.29, z: 0}
+  m_LocalScale: {x: 0.13938344, y: 0.13938344, z: 0.13938344}
   m_Children: []
   m_Father: {fileID: 8267930613787137232}
   m_RootOrder: 0
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 548723619755081392}
   m_Layer: 8
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 8267930613787137068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.125, y: 0.125, z: 0.125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8267930612133772419}
   - {fileID: 8267930611990873472}
@@ -342,14 +342,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
 --- !u!50 &8267930613787137070
 Rigidbody2D:
@@ -387,10 +387,12 @@ MonoBehaviour:
   moveSpeed: 5
   startRollSpeed: 40
   startRollCooldown: 1
-  handRadius: 0.5
+  handRadius: 1
   cam: {fileID: 0}
   rbd: {fileID: 8267930613787137070}
   playerHand: {fileID: 8267930612133772419}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   charState: 0
 --- !u!114 &8267930613787137234
 MonoBehaviour:
@@ -407,7 +409,7 @@ MonoBehaviour:
   rbd: {fileID: 8267930613787137070}
   attackPoint: {fileID: 8267930611990873472}
   swordSweep: {fileID: 8267930613727943737}
-  attackRadius: 1
+  attackRadius: 2
 --- !u!95 &548723619755081392
 Animator:
   serializedVersion: 3

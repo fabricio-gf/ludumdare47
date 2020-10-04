@@ -12,6 +12,11 @@ public class ES_Idle : EnemyState
     public override void OnStateUpdate()
     {
         base.OnStateUpdate();
+        
+        if (_enemyController.PlayerOnDetectionRange())
+        {
+            _enemyController.ChangeState(_enemyController.AllStates[(int)EnemyBlackboard.EnemyStates.chase]);
+        }
     }
 
     public override void OnExitState()
