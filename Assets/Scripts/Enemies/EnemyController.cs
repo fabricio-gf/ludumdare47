@@ -10,9 +10,17 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField] protected List<EnemyState> _allStates;
     public List<EnemyState> AllStates => _allStates;
-    
     protected EnemyState _currentState;
-    [SerializeField] protected float _detectionRange;
+
+    [SerializeField] protected float _totalLife;
+    public float TotalLife => _totalLife;
+
+    private float _currentLife;
+    
+    public float damageCooldown = 0.3f;
+    private float lastDamageTime;
+
+    [SerializeField] protected float _detectionRange = 5f;
     public float DetectionRange => _detectionRange;
 
     [SerializeField] protected float _minDistToPlayer = 1.5f;
@@ -35,7 +43,7 @@ public class EnemyController : MonoBehaviour
     private Animator _animator;
     public Animator Animator => _animator;
 
-    public Vector2 PlayerPos => EnemyBlackboard.Instance.player.transform.position;
+    public Vector2 PlayerPos => EnemyBlackboard.Instance._player.transform.position;
     public Vector2 PlayerDir => (PlayerPos - Rigidbody.position).normalized;
     
     protected virtual void Start()
@@ -45,6 +53,7 @@ public class EnemyController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
             
         _currentState = _allStates[0];
+        _currentLife = _totalLife;
 
         foreach (var state in _allStates)
         {
@@ -95,5 +104,27 @@ public class EnemyController : MonoBehaviour
         float flip = PlayerDir.x < 0 ? 1 : -1;
         var spriteRendererTransform = SpriteRenderer.transform;
         spriteRendererTransform.localScale = new Vector2(flip, spriteRendererTransform.localScale.y);
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        if (Time.unscaledTime < lastDamageTime + damageCooldown) return;
+
+        if (_currentLife - damage > 0)
+        {
+            lastDamageTime = Time.unscaledTime;
+            _currentLife -= damage;
+            SpriteRenderer.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo);
+            ChangeState(AllStates[(int)EnemyBlackboard.EnemyStates.hurt]);
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
