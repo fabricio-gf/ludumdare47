@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Warm Coffee
   icon: {fileID: 21300000, guid: 68d7f25dce31ad5428097c85137d9a3d, type: 3}
-  description: Makes Sir Tainly super fast (2x movement and attack speed)
+  description: Gives The Knight a boost of energy! Speeds up all actions!
   cost: 200

@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
 
             Animator playerAnimator = player.GetComponent<Animator>();
             playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            
             playerAnimator.Play("Dying");
             
             StartCoroutine(EndRoundDelay());
@@ -239,6 +240,11 @@ public class GameManager : MonoBehaviour
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
         
+        player.GetComponent<Character2DController>().ResetVelocity();
+        player.GetComponent<Animator>().Play("Idle");
+        
+        //delete enemies
+        //reset spawner
         
         //
 
