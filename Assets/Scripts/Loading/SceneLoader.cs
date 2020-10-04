@@ -66,7 +66,7 @@ public class SceneLoader : MonoBehaviour
         
         loadingBehavior = FindObjectOfType<LoadingBehavior>();
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         
         StartCoroutine(AddScene(sceneName));
     }
@@ -76,7 +76,7 @@ public class SceneLoader : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         
         // artificial load time
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(2f);
         
         StartCoroutine(RemovePreviousScene());
     }
@@ -89,7 +89,7 @@ public class SceneLoader : MonoBehaviour
         
         AudioManager.instance.musicController.ChangeTrackBlend(levelTracks[_trackIndex], levelTracksLoopTimes[_trackIndex]);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         
         yield return SceneManager.UnloadSceneAsync("LoadingScreen");
 
@@ -100,6 +100,10 @@ public class SceneLoader : MonoBehaviour
         if (previousSceneName == "Menu")
         {
             GameManager.Instance.StartCountdown();
+        }
+        else if(previousSceneName == "Game")
+        {
+            Time.timeScale = 1;
         }
     }
 

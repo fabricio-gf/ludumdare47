@@ -176,12 +176,21 @@ public class GameManager : MonoBehaviour
         {
             isStoreOpen = true;
             Time.timeScale = 0;
-            foreach (var canvas in gameCanvases)
-            {
-                canvas.SetActive(false);
-            }
-            storeCanvas.SetActive(true);
+
+            print("Starting end round delay");
+            StartCoroutine(EndRoundDelay());
         }
+    }
+
+    IEnumerator EndRoundDelay()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        
+        foreach (var canvas in gameCanvases)
+        {
+            canvas.SetActive(false);
+        }
+        storeCanvas.SetActive(true);
     }
 
     void RestartLoop()
@@ -194,19 +203,16 @@ public class GameManager : MonoBehaviour
         TogglePause();
     }
 
-    public void GoToMainMenu()
+    public void CloseStore()
     {
         
     }
 
-    
     public void PressQuit()
     {
         blackScreenCanvas.SetActive(true);
         StartCoroutine(QuitDelay());
     }
-
-    
 
     IEnumerator QuitDelay()
     {
