@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Character2DController : MonoBehaviour
 {
+    public float startLife = 6f;
+    private float currentLife;
+
+    public float startStunnedTime = 3f;
+    private float stunnedTime;
+
     public float moveSpeed = 5f;
     public float startRollSpeed = 40f;
     private float rollSpeed;
@@ -15,15 +21,20 @@ public class Character2DController : MonoBehaviour
     public Camera cam;
     public Rigidbody2D rbd;
     public Transform playerHand;
+    public Transform handPivot;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    private SpriteRenderer handSpriteRenderer;
     
     private Vector2 movement;
     private Vector2 rollDir;
     private Vector2 mousePos;
+    private Vector3 mousePosToScreen;
+    private float handDist;
 
     private bool dodgeRoll;
     private bool canRoll = true;
+    private bool faceRight = true;
 
     [SerializeField]
     private CharacterState charState;
@@ -31,6 +42,7 @@ public class Character2DController : MonoBehaviour
     {
         Normal,
         DodgeRolling,
+        Stunned
     }
 
     private void Awake()
@@ -51,12 +63,22 @@ public class Character2DController : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        if (handSpriteRenderer == null)
+            handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
+
+        handDist = Vector3.Distance(handPivot.position, playerHand.position);
+
         Init();
     }
 
     private void Update()
     {
+        if (GameManager.Instance.isGamePaused || GameManager.Instance.isWaiting) return;
+        
         GetInput();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            TakeDamage(2f);
     }
 
     private void FixedUpdate()
@@ -65,9 +87,13 @@ public class Character2DController : MonoBehaviour
         {
             case CharacterState.Normal:
                 HandleMovement();
+                HandleAnimation();
                 break;
             case CharacterState.DodgeRolling:
                 HandleDodgeRoll();
+                break;
+            case CharacterState.Stunned:
+                HandleStunned();
                 break;
         }
 
@@ -80,7 +106,18 @@ public class Character2DController : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        
+        if (Input.GetButtonDown("Jump"))
+            dodgeRoll = true;
+        else if (Input.GetButtonUp("Jump"))
+            dodgeRoll = false;
 
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        mousePosToScreen = cam.ScreenToViewportPoint(Input.mousePosition);
+    }
+
+    void HandleAnimation()
+    {
         if (movement.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -89,7 +126,16 @@ public class Character2DController : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-        
+
+        if (mousePosToScreen.x > 0.5f)
+        {
+            handSpriteRenderer.flipX = false;
+        }
+        else
+        {
+            handSpriteRenderer.flipX = true;
+        }
+
         if (movement != Vector2.zero)
         {
             animator.SetBool("Moving", true);
@@ -98,12 +144,6 @@ public class Character2DController : MonoBehaviour
         {
             animator.SetBool("Moving", false);
         }
-        
-        if (Input.GetButtonDown("Jump"))
-            dodgeRoll = true;
-        else if (Input.GetButtonUp("Jump"))
-            dodgeRoll = false;
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void HandleMovement()
@@ -122,7 +162,6 @@ public class Character2DController : MonoBehaviour
             }
             else
             {
-                //rollDir = (Input.mousePosition - Camera.main.WorldToScreenPoint(rbd.position)).normalized;
                 rollDir = (mousePos - rbd.position).normalized;
             }
 
@@ -154,6 +193,21 @@ public class Character2DController : MonoBehaviour
         }
     }
 
+    void HandleStunned()
+    {
+        if (stunnedTime >= 0)
+        {
+            stunnedTime -= Time.deltaTime;
+        }
+        else
+        {
+            currentLife = startLife;
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = Color.white;
+            ChangeChararacterStateTo(CharacterState.Normal);
+        }
+    }
+
     void ChangeChararacterStateTo(CharacterState characterState)
     {
         charState = characterState;
@@ -163,14 +217,28 @@ public class Character2DController : MonoBehaviour
     {
         ChangeChararacterStateTo(CharacterState.Normal);
         rollCooldown = startRollCooldown;
+        currentLife = startLife;
+        stunnedTime = startStunnedTime;
     }
 
     void HandleHandPos()
     {
-        Vector2 lookDir = (mousePos - rbd.position).normalized;
-        playerHand.position = rbd.position + lookDir * handRadius;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        playerHand.rotation = rotation;
+        Vector3 lookDir = (mousePos - (Vector2)handPivot.position).normalized;
+        playerHand.position = handPivot.position + lookDir * handDist;
+        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //playerHand.rotation = rotation;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentLife -= damage;
+        if (currentLife <= 0)
+        {
+            stunnedTime = startStunnedTime;
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = Color.yellow;
+            ChangeChararacterStateTo(CharacterState.Stunned);
+        }
     }
 }

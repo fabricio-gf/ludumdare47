@@ -194,6 +194,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3766730683165399047, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
   m_PrefabInstance: {fileID: 3766730682051576834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1281858190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1281858190, guid: 09b04bcefdb782a42b1aeb3543104d32, type: 3}
+  m_PrefabInstance: {fileID: 3766730682051576834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1718466089
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +394,10 @@ PrefabInstance:
       propertyPath: buttonGrid
       value: 
       objectReference: {fileID: 1117559813}
+    - target: {fileID: 7296974620376614064, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
+      propertyPath: upgradeDescriptionPanel
+      value: 
+      objectReference: {fileID: 1281858190}
     - target: {fileID: 7296974620376614065, guid: 8b24ba59c435c94499afb06f9cb8b95f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
