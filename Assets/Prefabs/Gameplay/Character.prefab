@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: cc136600f9329ba4ab77f36c18400a3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5551c6e26a32d1646b002d7033c4ebe6, type: 3}
   m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_FlipX: 0
@@ -313,8 +313,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: -524059746194353165, guid: 62429b5b2714a0f4c8b27385b89b7619, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: -524059746194353165, guid: aa6897b45d228ef4ab483dc0f5e782c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbd: {fileID: 8267930613787137070}
+  cam: {fileID: 0}
   attackPoint: {fileID: 8267930611990873472}
   swordSweep: {fileID: 8267930613727943737}
   attackRadius: 2
