@@ -124,6 +124,7 @@ MonoBehaviour:
   - {fileID: 4508300575831315100}
   - {fileID: 2638638529431035385}
   _detectionRange: 6
+  _minDistToPlayer: 1.5
   _speed: 1.5
   _attack: {fileID: 11400000, guid: 8e1fe6fc6ba7ee04c9eabb99775bdbfd, type: 2}
   _attackCooldown: 0.5
@@ -247,8 +248,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 4723107735738678597, guid: 9e6982cd26f6bc14fb8e17819a6efc54, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -8876285183891590719, guid: a287e87cd18444e4c9f70be0cdbbb83b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,7 +269,7 @@ Animator:
   m_GameObject: {fileID: 8896437510970110575}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0ae011f74513ca649906d732fcf20b3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d00a61ce703f05e41b449bc681f637e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

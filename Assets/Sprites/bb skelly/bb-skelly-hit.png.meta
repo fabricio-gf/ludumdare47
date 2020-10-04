@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: cf6727deb8ccd404896a5d32c1aa792b
+guid: 8e95e29c52e985241bc1f508b9b76871
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -306591068755769952
-    second: skelly-attack_0
+      213: -7122781968776206855
+    second: bb-skelly-hit_0
   - first:
-      213: 5748790434077390613
-    second: skelly-attack_1
+      213: 5282489953145119995
+    second: bb-skelly-hit_1
   - first:
-      213: 9204753988022329140
-    second: skelly-attack_2
+      213: 5986005571806053081
+    second: bb-skelly-hit_2
   - first:
-      213: -4732294763098985352
-    second: skelly-attack_3
+      213: -3325802853616819239
+    second: bb-skelly-hit_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skelly-attack_0
+      name: bb-skelly-hit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a5418f1c05cebbf0800000000000000
-      internalID: -306591068755769952
+      spriteID: 9f5698a998bc62d90800000000000000
+      internalID: -7122781968776206855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skelly-attack_1
+      name: bb-skelly-hit_1
       rect:
         serializedVersion: 2
         x: 512
@@ -136,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 517b85ff07ec7cf40800000000000000
-      internalID: 5748790434077390613
+      spriteID: bf4e8c2ef9c2f4940800000000000000
+      internalID: 5282489953145119995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skelly-attack_2
+      name: bb-skelly-hit_2
       rect:
         serializedVersion: 2
         x: 0
@@ -157,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43f5ee4bbfaddbf70800000000000000
-      internalID: 9204753988022329140
+      spriteID: 9d242033a50921350800000000000000
+      internalID: 5986005571806053081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skelly-attack_3
+      name: bb-skelly-hit_3
       rect:
         serializedVersion: 2
         x: 512
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87c2b095cf2835eb0800000000000000
-      internalID: -4732294763098985352
+      spriteID: 9d3603decef58d1d0800000000000000
+      internalID: -3325802853616819239
       vertices: []
       indices: 
       edges: []
