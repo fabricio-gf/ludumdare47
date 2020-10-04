@@ -1,0 +1,2 @@
+bb-skelly-walk.png,512,512,4
+bb-skelly-hit.png,512,512,4
