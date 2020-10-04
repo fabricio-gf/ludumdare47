@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class EnemyState : MonoBehaviour
 {
-    [HideInInspector] public EnemyController enemyController;
+    [HideInInspector] public EnemyController _enemyController;
+    protected Transform _playerTransform => EnemyBlackboard.Instance.player;
 
     public virtual void OnEnterState()
     {

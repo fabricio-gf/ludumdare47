@@ -1,20 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBlackboard : MonoBehaviour
 {
-    public static EnemyBlackboard instance;
+    private static EnemyBlackboard _instance;
+
+    public static EnemyBlackboard Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                var enemyBlackboard = new GameObject("EnemyBlackboard");
+                var newInstance = enemyBlackboard.AddComponent<EnemyBlackboard>();
+                _instance = newInstance;
+            }
+            return _instance;
+        }
+    }
 
     [HideInInspector] public Transform player;
     [HideInInspector] public int enemyCount;
 
-    private void Awake()
+    public enum EnemyStates
     {
-        EnemyBlackboard.instance = this;
+        idle = 0, chase = 1, attack = 2,
     }
 
-    private void Start()
+    private void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
