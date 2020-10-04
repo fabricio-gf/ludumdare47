@@ -24,7 +24,7 @@ public class EnemyRanged : EnemyController
     {
         base.Update();
 
-        if (PlayerOnAttackRange() && Mathf.Abs(transform.position.y - EnemyBlackboard.Instance.player.transform.position.y) <= 1.3f)
+        if (PlayerOnAttackRange() && Mathf.Abs(transform.position.y - PlayerPos.y) <= 1.3f)
         {
             if (Time.unscaledTime >= _lastAttackTime + AttackCooldown) ChangeState(AllStates[(int)EnemyBlackboard.EnemyStates.fire]);
         }
