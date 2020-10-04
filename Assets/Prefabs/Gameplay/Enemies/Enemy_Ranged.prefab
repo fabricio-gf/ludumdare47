@@ -1021,7 +1021,7 @@ MonoBehaviour:
   - {fileID: 8661512491422123327}
   _totalLife: 2
   damageCooldown: 0.3
-  _detectionRange: 5
+  _detectionRange: 8
   _minDistToPlayer: 4
   _speed: 2
   _attack: {fileID: 11400000, guid: be0cdb1918fed0a42baef366c9f1dd13, type: 2}
