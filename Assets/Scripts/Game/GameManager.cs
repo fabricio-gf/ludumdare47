@@ -59,6 +59,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady += StartCountdown;
+        else StartCountdown();
+    }
+
+    private void OnDisable()
+    {
+        if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady -= StartCountdown;
     }
 
     private void Update()

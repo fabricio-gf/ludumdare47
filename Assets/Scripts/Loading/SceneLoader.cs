@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,11 @@ public class SceneLoader : MonoBehaviour
     public float[] levelTracksLoopTimes;
 
     private int _trackIndex = 0;
+
+    public delegate void OnSceneReady();
+
+    public OnSceneReady _onSceneReady;
+    
 
     private void Awake()
     {
@@ -96,15 +102,8 @@ public class SceneLoader : MonoBehaviour
         AudioManager.instance.musicController.ForceAddListener();
         AudioManager.instance.effectsController.ForceAddListener();
 
-        // i know this is bad don't worry about it
-        if (previousSceneName == "Menu")
-        {
-            GameManager.Instance.StartCountdown();
-        }
-        else if(previousSceneName == "Game")
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = 1;
+        _onSceneReady?.Invoke();
     }
 
 }
