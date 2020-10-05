@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7810de26b0da649a0d0de943b04eef, type: 3}
   m_Name: BruteAttack
   m_EditorClassIdentifier: 
-  _attackAnim: {fileID: 0}
-  _attackRange: 0
-  _attackDamage: 0
+  _attackAnim: {fileID: 7400000, guid: eea74ce5e6bef5d499b47632636dcb6b, type: 2}
+  _attackRange: 2
+  _attackDamage: 6
