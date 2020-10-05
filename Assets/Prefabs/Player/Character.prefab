@@ -148,19 +148,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439936bb6ad61214f872c8a8a8068f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 6
+  startLife: 1
   damageCooldown: 0.5
-  startStunnedTime: 3
-  moveSpeed: 5
-  startRollSpeed: 40
+  startStunnedTime: 0.5
+  moveSpeed: 4
+  startRollSpeed: 30
   startRollCooldown: 1
   handRadius: 1
+  coffeeMultiplier: 1.2
   cam: {fileID: 0}
   rbd: {fileID: 1024111102775414022}
   playerHand: {fileID: 1024111103369930155}
   handPivot: {fileID: 7438160895050915042}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  isStunned: 0
+  starInvunerableTime: 1
   charState: 0
 --- !u!114 &1024111102775414266
 MonoBehaviour:
@@ -178,8 +181,12 @@ MonoBehaviour:
   cam: {fileID: 0}
   attackPoint: {fileID: 8974487174903514170}
   swordSweep: {fileID: 8974487173637857195}
-  attackCooldown: 1
-  swordSweepLifetime: 0.5
+  attackCooldown: 0.75
+  swordSweepLifetime: 0.25
+  _isOnCooldown: 0
+  hand: {fileID: 1024111103369930154}
+  normalHandColor: {r: 1, g: 1, b: 1, a: 1}
+  onCooldownHandColor: {r: 1, g: 0.42352942, b: 0.31764707, a: 1}
 --- !u!95 &8869485083362617240
 Animator:
   serializedVersion: 3

@@ -6,13 +6,13 @@ using DG.Tweening;
 
 public class Character2DController : MonoBehaviour
 {
-    public float startLife = 6f;
+    public float startLife = 1f;
     private float currentLife;
 
     public float damageCooldown = 0.5f;
     private float lastDamageTime;
 
-    public float startStunnedTime = 3f;
+    public float startStunnedTime = 0.5f;
     private float stunnedTime;
 
     public float moveSpeed = 5f;
@@ -46,6 +46,10 @@ public class Character2DController : MonoBehaviour
     private bool canRoll = true;
     private bool faceRight = true;
     [HideInInspector] public bool isStunned = false;
+
+    private bool invunerable = false;
+    public float starInvunerableTime = 1f;
+    private float invunerableTime;
 
     [SerializeField]
     private CharacterState charState;
@@ -84,6 +88,8 @@ public class Character2DController : MonoBehaviour
 
         handDist = Vector3.Distance(handPivot.position, playerHand.position);
 
+        invunerableTime = starInvunerableTime;
+
         Init();
     }
 
@@ -106,6 +112,7 @@ public class Character2DController : MonoBehaviour
             case CharacterState.Normal:
                 HandleMovement();
                 HandleAnimation();
+                HandleInvunerability();
                 break;
             case CharacterState.DodgeRolling:
                 HandleDodgeRoll();
@@ -247,6 +254,8 @@ public class Character2DController : MonoBehaviour
 
     void HandleStunned()
     {
+        invunerable = true;
+
         if (stunnedTime >= 0)
         {
             stunnedTime -= Time.deltaTime;
@@ -256,6 +265,22 @@ public class Character2DController : MonoBehaviour
             currentLife = startLife;
             spriteRenderer.color = Color.white;
             ChangeChararacterStateTo(CharacterState.Normal);
+        }
+    }
+
+    void HandleInvunerability()
+    {
+        if (invunerable)
+        {
+            if (invunerableTime > 0)
+            {
+                invunerableTime -= Time.deltaTime;
+            }
+            else
+            {
+                invunerable = false;
+                invunerableTime = starInvunerableTime;
+            }
         }
     }
 
@@ -287,7 +312,7 @@ public class Character2DController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (Time.unscaledTime < lastDamageTime + damageCooldown || charState != CharacterState.Normal) return;
+        if (Time.unscaledTime < lastDamageTime + damageCooldown || charState != CharacterState.Normal || invunerable) return;
 
         if (currentLife - damage > 0)
         {
