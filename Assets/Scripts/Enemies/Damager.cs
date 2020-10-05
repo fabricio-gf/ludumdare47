@@ -36,6 +36,7 @@ public class Damager : MonoBehaviour
                 break;
             case DamagerType.player:
                 if (other.CompareTag("Enemy")) other.GetComponentInParent<EnemyController>().TakeDamage(1f);
+                if (other.CompareTag("Balloon")) other.GetComponent<Balloon>().PopBalloon();
                 break;
         }
     }

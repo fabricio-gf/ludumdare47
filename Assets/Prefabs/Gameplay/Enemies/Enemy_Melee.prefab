@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 1437043593153379562}
   - component: {fileID: 1437043593153379561}
   - component: {fileID: 1437043593153379560}
+  - component: {fileID: 5701349411180996355}
   m_Layer: 0
   m_Name: Enemy_Melee
   m_TagString: Enemy
@@ -209,6 +210,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5701349411180996355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437043593153379564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602911b6072544f4698e2d6fc793f0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 9048351163392414222, guid: 39857229eefa66c41a0762c9cd244cc6, type: 3}
 --- !u!1 &3493332658775030683
 GameObject:
   m_ObjectHideFlags: 0

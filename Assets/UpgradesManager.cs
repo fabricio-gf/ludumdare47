@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UpgradesManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class UpgradesManager : MonoBehaviour
     public List<Upgrade> ownedUpgrades = new List<Upgrade>();
 
     private static UpgradesManager _instance;
+
+    public TextMeshProUGUI moneyText;
 
     public static UpgradesManager Instance
     {
@@ -35,5 +38,16 @@ public class UpgradesManager : MonoBehaviour
     public void AddUpgrade(Upgrade upgrade)
     {
         ownedUpgrades.Add(upgrade);
+    }
+
+    public void AddMoney(int value)
+    {
+        money += value;
+        UpdateMoneyText();
+    }
+
+    public void UpdateMoneyText()
+    {
+        moneyText.text = money.ToString();
     }
 }

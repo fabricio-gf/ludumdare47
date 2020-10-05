@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 7779548627023617895}
   - component: {fileID: 7779548627023617889}
   - component: {fileID: 7779548627023617888}
+  - component: {fileID: 3721152649480475599}
   m_Layer: 0
   m_Name: Enemy_Brute
   m_TagString: Enemy
@@ -397,3 +398,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3721152649480475599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7779548627023617892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602911b6072544f4698e2d6fc793f0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 9048351163392414222, guid: 39857229eefa66c41a0762c9cd244cc6, type: 3}

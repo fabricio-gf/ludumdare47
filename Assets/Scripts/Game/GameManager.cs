@@ -38,10 +38,13 @@ public class GameManager : MonoBehaviour
     [Header("Balloons")] public List<GameObject> balloons;
     
     [Space(20)]
-    [SerializeField] private Toilet toilet = null;
+    [SerializeField] private ToiletIcon toiletIcon = null;
     private bool isCritical = false;  
 
     public GameState gameState = GameState.Waiting;
+
+    public Transform startPos;
+    
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
     public enum GameState
     {
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        UpgradesManager.Instance.UpdateMoneyText();
         SpawnBalloons();
     }
 
@@ -175,6 +179,9 @@ public class GameManager : MonoBehaviour
         
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
+
+        EnemySpawner.Instance.canSpawn = true;
+        
         ChangeGameStateTo(GameState.Playing);
     }
 
@@ -188,12 +195,12 @@ public class GameManager : MonoBehaviour
             if (remainingTimePercent <= 0.3f && !isCritical)
             {
                 isCritical = true;
-                toilet.StartShaking();
+                toiletIcon.StartShaking();
             }
             else if (remainingTimePercent > 0.3f && isCritical)
             {
                 isCritical = false;
-                toilet.StopShaking();
+                toiletIcon.StopShaking();
             }
         }
         else
@@ -264,12 +271,19 @@ public class GameManager : MonoBehaviour
         timerBarImg.fillAmount = 1;
         
         player.GetComponent<Character2DController>().ResetVelocity();
+        player.transform.position = startPos.position;
         player.GetComponent<Animator>().Play("Idle");
-        
+
+        UpgradesManager.Instance.UpdateMoneyText();
         SpawnBalloons();
-        
-        //delete enemies
-        //reset spawner
+        toiletIcon.StopShaking();
+
+        var enemies = FindObjectsOfType<EnemyController>();
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        EnemySpawner.Instance.canSpawn = true;
         
         //
 
@@ -307,5 +321,10 @@ public class GameManager : MonoBehaviour
     void ChangeGameStateTo(GameState gameState)
     {
         this.gameState = gameState;
+    }
+
+    public void TriggerPlayerVictory()
+    {
+        print("Victory!!");
     }
 }
