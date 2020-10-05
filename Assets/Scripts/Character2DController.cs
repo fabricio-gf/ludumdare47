@@ -145,6 +145,15 @@ public class Character2DController : MonoBehaviour
         {
             handSpriteRenderer.flipX = true;
         }
+        
+        if(mousePosToScreen.y > handPivotPosToScreen.y)
+        {
+            handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+        }
+        else
+        {
+            handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+        }
 
         if (movement != Vector2.zero)
         {
