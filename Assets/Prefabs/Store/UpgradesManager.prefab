@@ -43,4 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25c5aeff86a1dc489b7ce14efc10875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  ownedUpgradesIconsParent: {fileID: 0}
+  allUpgrades: []
   ownedUpgrades: []
+  warmCoffeeSO: {fileID: 11400000, guid: 29e996b2a4ab3704483a290c0e84cfe7, type: 2}
+  warmCoffee: 0
+  expiredMedicineSO: {fileID: 11400000, guid: 2e18f09c47ce3334b9fbd75c2d7e735e, type: 2}
+  expiredMedicine: 0
+  balloonsSO: {fileID: 11400000, guid: 409136494f8610c4483b9f64f8aebef2, type: 2}
+  balloons: 0
+  flamingMuffinSO: {fileID: 11400000, guid: 926b5b6456032a7498286d5681d21664, type: 2}
+  flamingMuffin: 0
+  cosmicDonutSO: {fileID: 11400000, guid: f8b76b759b89a8647953b83c85257a85, type: 2}
+  cosmicDonut: 0
+  angelPancakeSO: {fileID: 11400000, guid: b736dfd8e7b7dbf4c87e4b591b83ec2f, type: 2}
+  angelPancake: 0

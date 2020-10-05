@@ -36,6 +36,9 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
+            var text = button.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = "Buy";
+
             if (UpgradesManager.Instance.money < int.Parse(costText.text) && button.interactable == true)
                 button.interactable = false;
             else if (UpgradesManager.Instance.money >= int.Parse(costText.text) && button.interactable == false)
@@ -50,6 +53,7 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         descriptionText = _description;
         costText.text = _cost.ToString();
         storeBehavior = _storeBehavior;
+        bought = false;
     }
 
     void ShowUpgradeDescription(Vector2 pos)

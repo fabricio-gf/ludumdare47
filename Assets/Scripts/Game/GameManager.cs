@@ -41,11 +41,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ToiletIcon toiletIcon = null;
     private bool isCritical = false;  
 
+    bool secondWind = true;
+
     public GameState gameState = GameState.Waiting;
 
     public Transform startPos;
     
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
+
+    public Transform startPos;
+    public Transform endPos;
+    private float maxDistance;
+
+    public Slider levelProgression;
+
     public enum GameState
     {
         PreWaiting,
@@ -75,6 +84,8 @@ public class GameManager : MonoBehaviour
     {
         UpgradesManager.Instance.UpdateMoneyText();
         SpawnBalloons();
+
+        maxDistance = Vector2.Distance(startPos.position, endPos.position);
     }
 
     private void SpawnBalloons()
@@ -137,12 +148,12 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 Playing();
+                UpdateProgressionToToilet();
                 break;
             case GameState.Store:
                 OpenStore();
                 break;
             case GameState.End:
-                RestartLoop();
                 break;
             
             default:
@@ -192,6 +203,15 @@ public class GameManager : MonoBehaviour
             remainingTime -= Time.deltaTime;
             timerBarImg.fillAmount = remainingTimePercent;
 
+            if (UpgradesManager.Instance.angelPancake && secondWind)
+            {
+                if (remainingTimePercent <= 0.05f)
+                {
+                    secondWind = false;
+                    SecondWind();
+                }
+            }
+
             if (remainingTimePercent <= 0.3f && !isCritical)
             {
                 isCritical = true;
@@ -213,6 +233,8 @@ public class GameManager : MonoBehaviour
     {
         if (!isStoreOpen)
         {
+            StoreBehavior.Instance.UpdateStore();
+
             isStoreOpen = true;
             Time.timeScale = 0;
             
@@ -252,6 +274,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseStore()
     {
+        ChangeGameStateTo(GameState.End);
         blackScreenCanvas.SetActive(true);
         StartCoroutine(FadeToBlackOnResetGame());
     }
@@ -266,7 +289,9 @@ public class GameManager : MonoBehaviour
             canvas.SetActive(true);
         }
         storeCanvas.SetActive(false);
-        
+
+        isStoreOpen = false;
+
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
         
@@ -321,6 +346,28 @@ public class GameManager : MonoBehaviour
     void ChangeGameStateTo(GameState gameState)
     {
         this.gameState = gameState;
+    }
+
+    public void IncreaseRemainingTime(float amount)
+    {
+        remainingTime += amount;
+        if (remainingTime > 60f)
+            remainingTime = 60;
+    }
+
+    void SecondWind()
+    {
+        Debug.Log("Second Wind");
+        remainingTime = startLoopTimeInSeconds * 0.3f;
+    }
+
+    void UpdateProgressionToToilet()
+    {
+        if (player.transform.position.x <= maxDistance && player.transform.position.x <= endPos.position.x)
+        {
+            float distance = 1 - (Vector2.Distance(player.transform.position, endPos.position) / maxDistance);
+            levelProgression.value = distance;
+        }
     }
 
     public void TriggerPlayerVictory()

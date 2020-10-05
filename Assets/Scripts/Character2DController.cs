@@ -158,7 +158,13 @@ public class Character2DController : MonoBehaviour
 
     void HandleMovement()
     {
-        rbd.MovePosition(rbd.position + movement.normalized * (moveSpeed * Time.fixedDeltaTime));
+        float multiply;
+        if (UpgradesManager.Instance.warmCoffee)
+            multiply = 2f;
+        else
+            multiply = 1f;
+
+        rbd.MovePosition(rbd.position + movement.normalized * (moveSpeed * multiply * Time.fixedDeltaTime));
 
         if (dodgeRoll && canRoll)
         {
