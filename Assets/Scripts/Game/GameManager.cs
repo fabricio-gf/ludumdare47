@@ -45,6 +45,13 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState = GameState.Waiting;
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
+
+    public Transform startPos;
+    public Transform endPos;
+    private float maxDistance;
+
+    public Slider levelProgression;
+
     public enum GameState
     {
         PreWaiting,
@@ -73,6 +80,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SpawnBalloons();
+
+        maxDistance = Vector2.Distance(startPos.position, endPos.position);
     }
 
     private void SpawnBalloons()
@@ -135,6 +144,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 Playing();
+                UpdateProgressionToToilet();
                 break;
             case GameState.Store:
                 OpenStore();
@@ -335,5 +345,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Second Wind");
         remainingTime = startLoopTimeInSeconds * 0.3f;
+    }
+
+    void UpdateProgressionToToilet()
+    {
+        if (player.transform.position.x <= maxDistance && player.transform.position.x <= endPos.position.x)
+        {
+            float distance = 1 - (Vector2.Distance(player.transform.position, endPos.position) / maxDistance);
+            levelProgression.value = distance;
+        }
     }
 }
