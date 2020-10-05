@@ -127,6 +127,8 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        if (UpgradesManager.Instance.cosmicDonut)
+            GameManager.Instance.IncreaseRemainingTime(2f);
         GetComponent<DropLoot>().DropMoney();
         var deathTime = 0.15f;
         Destroy(gameObject, deathTime);
