@@ -6,6 +6,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +34,10 @@ public class GameManager : MonoBehaviour
     public Image timerBarImg;
     public GameObject waitTime;
     public TMP_Text timeToWaitText;
+
+    [Header("Balloons")] public List<GameObject> balloons;
     
+    [Space(20)]
     [SerializeField] private Toilet toilet = null;
     private bool isCritical = false;  
 
@@ -62,6 +66,19 @@ public class GameManager : MonoBehaviour
 
         if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady += StartCountdown;
         else StartCountdown();
+    }
+
+    private void Start()
+    {
+        SpawnBalloons();
+    }
+
+    private void SpawnBalloons()
+    {
+        foreach (var t in balloons)
+        {
+            t.SetActive(Random.value < 0.3f);
+        }
     }
 
     private void OnDisable()
@@ -131,8 +148,6 @@ public class GameManager : MonoBehaviour
 
     void WaitToInitiateRound()
     {
-        print("Starting initial time");
-
         if (!waitTime.activeSelf)
         {
             waitTime.SetActive(true);
@@ -250,6 +265,8 @@ public class GameManager : MonoBehaviour
         
         player.GetComponent<Character2DController>().ResetVelocity();
         player.GetComponent<Animator>().Play("Idle");
+        
+        SpawnBalloons();
         
         //delete enemies
         //reset spawner
