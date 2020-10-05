@@ -36,6 +36,9 @@ public class MenuBehavior : MonoBehaviour
     
     public void PressInstructions()
     {
+        creditsCanvas.SetActive(false);
+        creditsButton.sprite = unpressedButton;
+        
         bool state = !instructionsCanvas.activeSelf;
         backButton.SetActive(state);
         instructionsCanvas.SetActive(state);
@@ -45,6 +48,9 @@ public class MenuBehavior : MonoBehaviour
     
     public void PressCredits()
     {
+        instructionsCanvas.SetActive(false);
+        instructionsButton.sprite = unpressedButton;
+        
         bool state = !creditsCanvas.activeSelf;
         backButton.SetActive(state);
         creditsCanvas.SetActive(state);
@@ -70,7 +76,7 @@ public class MenuBehavior : MonoBehaviour
 
     IEnumerator QuitDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         Application.Quit();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;

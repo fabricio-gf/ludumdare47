@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -30,6 +31,10 @@ public class GameManager : MonoBehaviour
     public GameObject storeCanvas;
     public GameObject blackScreenCanvas;
 
+    public GameObject defeatImage;
+    public GameObject victoryImage;
+    public TextMeshProUGUI scoreText;
+
     [Space(20)]
     public Image timerBarImg;
     public GameObject waitTime;
@@ -45,8 +50,6 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState = GameState.Waiting;
 
-    public Transform startPos;
-    
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
 
     public Transform startPos;
@@ -54,6 +57,8 @@ public class GameManager : MonoBehaviour
     private float maxDistance;
 
     public Slider levelProgression;
+
+    public int score = 0;
 
     public enum GameState
     {
@@ -78,10 +83,13 @@ public class GameManager : MonoBehaviour
 
         if (SceneLoader.Instance != null) SceneLoader.Instance._onSceneReady += StartCountdown;
         else StartCountdown();
+        
+        if(SceneLoader.Instance != null && SceneLoader.Instance._gameFinished) scoreText.gameObject.SetActive(true);
     }
 
     private void Start()
     {
+        //EnemyBlackboard.Instance.Initialize();
         UpgradesManager.Instance.UpdateMoneyText();
         SpawnBalloons();
 
@@ -151,7 +159,7 @@ public class GameManager : MonoBehaviour
                 UpdateProgressionToToilet();
                 break;
             case GameState.Store:
-                OpenStore();
+                HandleStore();
                 break;
             case GameState.End:
                 break;
@@ -193,7 +201,11 @@ public class GameManager : MonoBehaviour
 
         EnemySpawner.Instance.canSpawn = true;
         
+        player.GetComponent<Character2DController>().ResumePlayerMovement();
+        
         ChangeGameStateTo(GameState.Playing);
+        
+        //play gameplay song
     }
 
     void Playing()
@@ -229,12 +241,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void OpenStore()
+    void HandleStore()
     {
         if (!isStoreOpen)
         {
-            StoreBehavior.Instance.UpdateStore();
-
             isStoreOpen = true;
             Time.timeScale = 0;
             
@@ -243,7 +253,12 @@ public class GameManager : MonoBehaviour
             Animator playerAnimator = player.GetComponent<Animator>();
             playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             
-            playerAnimator.Play("Dying");
+            playerAnimator.SetTrigger("Died");
+            
+            player.GetComponent<Character2DController>().HideHand();
+            
+            defeatImage.SetActive(true);
+            //play defeat sound
             
             StartCoroutine(EndRoundDelay());
         }
@@ -254,12 +269,22 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(3f);
 
         player.GetComponent<Animator>().updateMode = AnimatorUpdateMode.Normal;
-        
+        OpenStore();
+    }
+
+    public void OpenStore()
+    {
         foreach (var canvas in gameCanvases)
         {
             canvas.SetActive(false);
         }
+        defeatImage.SetActive(false);
+        victoryImage.SetActive(false);
+        
+        StoreBehavior.Instance.UpdateStore();
         storeCanvas.SetActive(true);
+        
+        //play store song
     }
 
     void RestartLoop()
@@ -294,10 +319,15 @@ public class GameManager : MonoBehaviour
 
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
+
         
-        player.GetComponent<Character2DController>().ResetVelocity();
         player.transform.position = startPos.position;
-        player.GetComponent<Animator>().Play("Idle");
+        player.GetComponent<Animator>().SetTrigger("Reset");
+
+        Character2DController character = player.GetComponent<Character2DController>();
+        character.ResetVelocity();
+        character.ResumePlayerMovement();
+        character.ShowHand();
 
         UpgradesManager.Instance.UpdateMoneyText();
         SpawnBalloons();
@@ -306,10 +336,18 @@ public class GameManager : MonoBehaviour
         var enemies = FindObjectsOfType<EnemyController>();
         foreach (var enemy in enemies)
         {
-            Destroy(enemy);
+            Destroy(enemy.gameObject);
         }
         EnemySpawner.Instance.canSpawn = true;
-        
+
+        var coins = FindObjectsOfType<Pickuppable>();
+        foreach (var coin in coins)
+        {
+            Destroy(coin.gameObject);
+        }
+
+        score = 0;
+        scoreText.text = score.ToString();
         //
 
         blackScreenCanvas.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -336,7 +374,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator QuitDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         Application.Quit();
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
@@ -372,6 +410,19 @@ public class GameManager : MonoBehaviour
 
     public void TriggerPlayerVictory()
     {
-        print("Victory!!");
+        ChangeGameStateTo(GameState.End);
+        player.GetComponent<Character2DController>().StopPlayerMovement();
+        victoryImage.SetActive(true);
+
+        scoreText.text = score.ToString();
+        scoreText.gameObject.SetActive(true);
+        SceneLoader.Instance._gameFinished = true;
+        //play victory song
+    }
+
+    public void AddScore(int value)
+    {
+        score += value;
+        scoreText.text = score.ToString();
     }
 }

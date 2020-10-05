@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        print("My game object is " + gameObject.name);
         if (Instance == null)
         {
             Instance = this;

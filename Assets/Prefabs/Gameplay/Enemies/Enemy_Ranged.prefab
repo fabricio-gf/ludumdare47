@@ -1032,6 +1032,8 @@ MonoBehaviour:
   _minDistToPlayer: 4
   _speed: 2
   _attack: {fileID: 11400000, guid: be0cdb1918fed0a42baef366c9f1dd13, type: 2}
+  scoreValue: 25
+  donutTimeExtension: 1
   _attackCooldown: 0.8
   _lastAttackTime: 0
   _attackPivot: {fileID: 2557924888296321412}

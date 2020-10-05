@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aa85a8f2b553b4aafd1c7c8f0cc55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDropMoney: 1
+  canDropMoney: 0
 --- !u!114 &8555442552236808717
 MonoBehaviour:
   m_ObjectHideFlags: 0

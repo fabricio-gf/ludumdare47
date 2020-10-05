@@ -178,6 +178,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   attackPoint: {fileID: 8974487174903514170}
   swordSweep: {fileID: 8974487173637857195}
+  attackCooldown: 1
+  swordSweepLifetime: 0.5
 --- !u!95 &8869485083362617240
 Animator:
   serializedVersion: 3
@@ -331,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6246978953099707615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.324, z: 0}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1024111103369930155}
@@ -353,7 +355,7 @@ GameObject:
   - component: {fileID: 3726938202569777739}
   m_Layer: 0
   m_Name: SwordSweep
-  m_TagString: Untagged
+  m_TagString: PlayerSwipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,13 +367,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8974487173637857195}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.3510001, y: 0.062000006, z: 0}
-  m_LocalScale: {x: 0.9063395, y: 0.45154506, z: 0.14051776}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.14051776}
   m_Children: []
   m_Father: {fileID: 8974487174903514170}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8974487173637857199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -412,8 +414,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 5551c6e26a32d1646b002d7033c4ebe6, type: 3}
-  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  m_Sprite: {fileID: 21300000, guid: cf35dc0c10e90134facc21c66420da08, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -440,14 +442,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &8974487173637857197
 MonoBehaviour:

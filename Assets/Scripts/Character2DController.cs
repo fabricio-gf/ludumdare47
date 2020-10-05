@@ -16,11 +16,14 @@ public class Character2DController : MonoBehaviour
     private float stunnedTime;
 
     public float moveSpeed = 5f;
+    private float currentMoveSpeed;
     public float startRollSpeed = 40f;
     private float rollSpeed;
     public float startRollCooldown = 1f;
     private float rollCooldown;
     public float handRadius = 0.5f;
+
+    public float coffeeMultiplier = 1.2f;
 
     public Camera cam;
     public Rigidbody2D rbd;
@@ -29,17 +32,20 @@ public class Character2DController : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private SpriteRenderer handSpriteRenderer;
+    private SwordAttacking swordScript;
     
     private Vector2 movement;
     private Vector2 rollDir;
     private Vector2 mousePos;
     private Vector3 mousePosToScreen;
     private Vector3 handPivotPosToScreen;
+    private Vector3 playerHandToScreen;
     private float handDist;
 
     private bool dodgeRoll;
     private bool canRoll = true;
     private bool faceRight = true;
+    [HideInInspector] public bool isStunned = false;
 
     [SerializeField]
     private CharacterState charState;
@@ -70,6 +76,11 @@ public class Character2DController : MonoBehaviour
 
         if (handSpriteRenderer == null)
             handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
+
+        if (swordScript == null)
+        {
+            swordScript = GetComponent<SwordAttacking>();
+        }
 
         handDist = Vector3.Distance(handPivot.position, playerHand.position);
 
@@ -123,6 +134,9 @@ public class Character2DController : MonoBehaviour
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousePosToScreen = cam.ScreenToViewportPoint(Input.mousePosition);
+
+        //playerHandToScreen = cam.ScreenToViewportPoint(playerHand.localPosition);
+            
         handPivotPosToScreen = cam.WorldToViewportPoint(handPivot.position);
     }
 
@@ -137,23 +151,36 @@ public class Character2DController : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
-        if (mousePosToScreen.x > handPivotPosToScreen.x)
+        if (!swordScript._isOnCooldown)
         {
-            handSpriteRenderer.flipX = false;
-        }
-        else
-        {
-            handSpriteRenderer.flipX = true;
+            if (mousePosToScreen.x > handPivotPosToScreen.x)
+            {
+                handSpriteRenderer.flipX = false;
+            }
+            else
+            {
+                handSpriteRenderer.flipX = true;
+            }
+
+
+            if (mousePosToScreen.y > handPivotPosToScreen.y)
+            {
+                handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
+            else
+            {
+                handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
         }
         
-        if(mousePosToScreen.y > handPivotPosToScreen.y)
+        /*if (playerHandToScreen.y > handPivotPosToScreen.y)
         {
             handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
         else
         {
             handSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-        }
+        }*/
 
         if (movement != Vector2.zero)
         {
@@ -169,11 +196,11 @@ public class Character2DController : MonoBehaviour
     {
         float multiply;
         if (UpgradesManager.Instance.warmCoffee)
-            multiply = 2f;
+            multiply = coffeeMultiplier;
         else
             multiply = 1f;
 
-        rbd.MovePosition(rbd.position + movement.normalized * (moveSpeed * multiply * Time.fixedDeltaTime));
+        rbd.MovePosition(rbd.position + movement.normalized * (currentMoveSpeed * multiply * Time.fixedDeltaTime));
 
         if (dodgeRoll && canRoll)
         {
@@ -234,6 +261,8 @@ public class Character2DController : MonoBehaviour
 
     void ChangeChararacterStateTo(CharacterState characterState)
     {
+        isStunned = characterState == CharacterState.Stunned;
+
         charState = characterState;
     }
 
@@ -247,6 +276,8 @@ public class Character2DController : MonoBehaviour
 
     void HandleHandPos()
     {
+        if (swordScript._isOnCooldown) return;
+        
         Vector3 lookDir = (mousePos - (Vector2)handPivot.position).normalized;
         playerHand.position = handPivot.position + lookDir * handDist;
         //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
@@ -274,6 +305,26 @@ public class Character2DController : MonoBehaviour
     
     public void ResetVelocity()
     {
-        rbd.velocity = Vector2.zero;
+        movement = Vector2.zero;
+    }
+
+    public void StopPlayerMovement()
+    {
+        currentMoveSpeed = 0;
+    }
+
+    public void ResumePlayerMovement()
+    {
+        currentMoveSpeed = moveSpeed;
+    }
+
+    public void HideHand()
+    {
+        playerHand.gameObject.SetActive(false);
+    }
+
+    public void ShowHand()
+    {
+        playerHand.gameObject.SetActive(true);
     }
 }

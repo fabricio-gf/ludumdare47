@@ -29,6 +29,8 @@ public class MusicController : MonoBehaviour
 
     private static string PrefsString = "MusicMute";
 
+    [SerializeField] private float maxVolumeMult = 0.5f;
+
     void Awake()
     {
         SceneManager.sceneLoaded += AddListenerToMuteButton;
@@ -169,8 +171,8 @@ public class MusicController : MonoBehaviour
         float time = 0;
         while (time <= BlendDuration)
         {
-            FadeOutSource.volume = 1 - (time / BlendDuration);
-            FadeInSource.volume = time / BlendDuration;
+            FadeOutSource.volume = maxVolumeMult * (1 - time / BlendDuration);
+            FadeInSource.volume = maxVolumeMult * (time / BlendDuration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -180,7 +182,7 @@ public class MusicController : MonoBehaviour
 
     IEnumerator LoopTrackAtTime(AudioClip clip, AudioSource currentSource, AudioSource newSource, float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSecondsRealtime(time);
         newSource.clip = clip;
         newSource.Play();
         CallLoopTrackCoroutine(clip, newSource, currentSource, time);
