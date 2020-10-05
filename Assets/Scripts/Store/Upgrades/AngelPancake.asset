@@ -16,4 +16,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1618c114473bf154280c3aa9e58f4feb, type: 3}
   description: Your guardian angel now grants you a "second wind" when almost at
     your limit.
-  cost: 50
+  cost: 150
