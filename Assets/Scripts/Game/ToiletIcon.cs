@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Toilet : MonoBehaviour
+public class ToiletIcon : MonoBehaviour
 {
     // Start is called before the first frame update
 

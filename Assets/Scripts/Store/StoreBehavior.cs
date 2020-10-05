@@ -22,6 +22,8 @@ public class StoreBehavior : MonoBehaviour
 
     private static StoreBehavior _instance;
 
+    public GameObject emptyStoreText;
+
     public static StoreBehavior Instance
     {
         get
@@ -113,6 +115,12 @@ public class StoreBehavior : MonoBehaviour
 
                 storeUpgrades.Add(upgrade);
             }
+        }
+
+        emptyStoreText.SetActive(false);
+        if (newUpgrades.Count == 0)
+        {
+            emptyStoreText.SetActive(true);
         }
     }
 

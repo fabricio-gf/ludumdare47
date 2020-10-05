@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
 
     private void Awake()
     {
-        EnemyBlackboard.Instance.Initialize();
+        //EnemyBlackboard.Instance.Initialize();
     }
 
     public void SpawnEnemy()

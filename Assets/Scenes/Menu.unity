@@ -316,8 +316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
-  m_sharedMaterial: {fileID: -3993380641394594127, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
+  m_sharedMaterial: {fileID: -122251513295899878, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -516,8 +516,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
-  m_sharedMaterial: {fileID: -3993380641394594127, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
+  m_sharedMaterial: {fileID: -122251513295899878, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1764,8 +1764,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Instructions
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
-  m_sharedMaterial: {fileID: -3993380641394594127, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
+  m_sharedMaterial: {fileID: -122251513295899878, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2369,7 +2369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 33.7}
+  m_AnchoredPosition: {x: 0, y: 33.699997}
   m_SizeDelta: {x: -80, y: -227.49203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400025321
@@ -2392,7 +2392,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'Oh no! You''ve been cursed for <i>NO REASON</i>! You are going to have
+    a horrible "accident" every 30 seconds unless you find a bathroom first. No one
+    must get in your way, HURRY!
+
+
+    WASD - Movement
+
+    Space - Dash
+
+    Mouse
+    - Attack'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
   m_sharedMaterial: {fileID: -122251513295899878, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
@@ -2426,7 +2436,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3212,8 +3222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
-  m_sharedMaterial: {fileID: -3993380641394594127, guid: 881299fef2011fd4b8477152c0b04c1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
+  m_sharedMaterial: {fileID: -122251513295899878, guid: b3d65ff2a556fde4f9efd47ef6fd36d2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3451,7 +3461,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 103
   m_TargetDisplay: 0
 --- !u!224 &2029701199
 RectTransform:

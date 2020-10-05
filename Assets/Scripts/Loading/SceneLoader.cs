@@ -23,6 +23,8 @@ public class SceneLoader : MonoBehaviour
     public delegate void OnSceneReady();
 
     public OnSceneReady _onSceneReady;
+
+    public bool _gameFinished = false;
     
 
     private void Awake()

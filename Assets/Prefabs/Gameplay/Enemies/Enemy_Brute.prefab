@@ -74,15 +74,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -7252529149168984451, guid: 948bd583953867e4e9cc23f522c17325, type: 3}
+  m_Sprite: {fileID: -555917405260494020, guid: 1d8962eb450b6f7489793e07da0327ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 6.4, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8396363886739236351
@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 7779548627023617895}
   - component: {fileID: 7779548627023617889}
   - component: {fileID: 7779548627023617888}
+  - component: {fileID: 3721152649480475599}
   m_Layer: 0
   m_Name: Enemy_Brute
   m_TagString: Enemy
@@ -348,6 +349,8 @@ MonoBehaviour:
   _minDistToPlayer: 1.5
   _speed: 2
   _attack: {fileID: 11400000, guid: 8e1fe6fc6ba7ee04c9eabb99775bdbfd, type: 2}
+  scoreValue: 50
+  donutTimeExtension: 1
   _attackCooldown: 0.5
   _lastAttackTime: 0
 --- !u!61 &7779548627023617889
@@ -363,7 +366,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052883387, y: -0.6874814}
+  m_Offset: {x: 0.052883387, y: 1.3372865}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -374,7 +377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6529193, y: 4.4990454}
+  m_Size: {x: 3.6529193, y: 2.3626757}
   m_EdgeRadius: 0
 --- !u!50 &7779548627023617888
 Rigidbody2D:
@@ -397,3 +400,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3721152649480475599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7779548627023617892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602911b6072544f4698e2d6fc793f0ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 9048351163392414222, guid: 39857229eefa66c41a0762c9cd244cc6, type: 3}

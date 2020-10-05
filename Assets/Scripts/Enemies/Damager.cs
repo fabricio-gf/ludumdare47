@@ -44,6 +44,7 @@ public class Damager : MonoBehaviour
                         multiply = 1f;
                     other.GetComponentInParent<EnemyController>().TakeDamage(1f * multiply);
                 }
+                if (other.CompareTag("Balloon")) other.GetComponent<Balloon>().PopBalloon();
                 break;
         }
     }

@@ -48,6 +48,9 @@ public class EnemyController : MonoBehaviour
 
     public Vector2 PlayerPos => EnemyBlackboard.Instance._player.transform.position;
     public Vector2 PlayerDir => (PlayerPos - Rigidbody.position).normalized;
+
+    public int scoreValue = 20;
+    public float donutTimeExtension = 1f;
     
     protected virtual void Start()
     {
@@ -128,7 +131,11 @@ public class EnemyController : MonoBehaviour
     public void Die()
     {
         if (UpgradesManager.Instance.cosmicDonut)
-            GameManager.Instance.IncreaseRemainingTime(2f);
+            GameManager.Instance.IncreaseRemainingTime(donutTimeExtension);
+        
+        
+        GameManager.Instance.AddScore(scoreValue);
+        GetComponent<DropLoot>().DropMoney();
         var deathTime = 0.15f;
         Destroy(gameObject, deathTime);
         transform.DOScale(Vector3.zero, deathTime);
