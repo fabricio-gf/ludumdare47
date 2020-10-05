@@ -125,6 +125,8 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        if (UpgradesManager.Instance.cosmicDonut)
+            GameManager.Instance.IncreaseRemainingTime(2f);
         Destroy(gameObject);
     }
     

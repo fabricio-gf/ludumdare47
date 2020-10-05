@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeToWaitText;
     
     [SerializeField] private Toilet toilet = null;
-    private bool isCritical = false;  
+    private bool isCritical = false;
+
+    bool secondWind = true;
 
     public GameState gameState = GameState.Waiting;
     public float remainingTimePercent => remainingTime / startLoopTimeInSeconds;
@@ -121,7 +123,6 @@ public class GameManager : MonoBehaviour
                 OpenStore();
                 break;
             case GameState.End:
-                RestartLoop();
                 break;
             
             default:
@@ -170,6 +171,15 @@ public class GameManager : MonoBehaviour
             remainingTime -= Time.deltaTime;
             timerBarImg.fillAmount = remainingTimePercent;
 
+            if (UpgradesManager.Instance.angelPancake && secondWind)
+            {
+                if (remainingTimePercent <= 0.05f)
+                {
+                    secondWind = false;
+                    SecondWind();
+                }
+            }
+
             if (remainingTimePercent <= 0.3f && !isCritical)
             {
                 isCritical = true;
@@ -191,6 +201,8 @@ public class GameManager : MonoBehaviour
     {
         if (!isStoreOpen)
         {
+            StoreBehavior.Instance.UpdateStore();
+
             isStoreOpen = true;
             Time.timeScale = 0;
             
@@ -230,6 +242,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseStore()
     {
+        ChangeGameStateTo(GameState.End);
         blackScreenCanvas.SetActive(true);
         StartCoroutine(FadeToBlackOnResetGame());
     }
@@ -244,7 +257,9 @@ public class GameManager : MonoBehaviour
             canvas.SetActive(true);
         }
         storeCanvas.SetActive(false);
-        
+
+        isStoreOpen = false;
+
         remainingTime = startLoopTimeInSeconds;
         timerBarImg.fillAmount = 1;
         
@@ -290,5 +305,18 @@ public class GameManager : MonoBehaviour
     void ChangeGameStateTo(GameState gameState)
     {
         this.gameState = gameState;
+    }
+
+    public void IncreaseRemainingTime(float amount)
+    {
+        remainingTime += amount;
+        if (remainingTime > 60f)
+            remainingTime = 60;
+    }
+
+    void SecondWind()
+    {
+        Debug.Log("Second Wind");
+        remainingTime = startLoopTimeInSeconds * 0.3f;
     }
 }

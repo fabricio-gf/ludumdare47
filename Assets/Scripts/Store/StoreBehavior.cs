@@ -20,7 +20,31 @@ public class StoreBehavior : MonoBehaviour
 
     public TextMeshProUGUI moneyText;
 
-    private void Start()
+    private static StoreBehavior _instance;
+
+    public static StoreBehavior Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = GameObject.FindObjectOfType<StoreBehavior>();
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void UpdateStore()
     {
         FillStore();
         SetMoney(UpgradesManager.Instance.money);
@@ -28,7 +52,19 @@ public class StoreBehavior : MonoBehaviour
 
     public void FillStore()
     {
+        storeUpgrades.Clear();
+        upgradeButtons.Clear();
         List<Upgrade> newUpgrades = new List<Upgrade>();
+
+        if (buttonGrid.childCount > 0)
+        {
+            for (int i = 0; i < buttonGrid.childCount; i++)
+            {
+                GameObject gameObject = buttonGrid.GetChild(i).gameObject;
+                Destroy(gameObject);
+            }
+        }
+
         foreach (Upgrade upgrade1 in upgradeList)
         {
             if (!UpgradesManager.Instance.ownedUpgrades.Contains(upgrade1))

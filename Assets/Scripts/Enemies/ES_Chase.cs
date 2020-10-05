@@ -18,7 +18,13 @@ public class ES_Chase : EnemyState
         if (!_enemyController.PlayerOnDetectionRange()) _enemyController.ChangeState(_enemyController.AllStates[(int)EnemyBlackboard.EnemyStates.idle]);
         
         _enemyController.HandleFlip();
-        _enemyController.Rigidbody.MovePosition(_enemyController.Rigidbody.position + _enemyController.PlayerDir * (_enemyController.Speed * Time.fixedDeltaTime));
+
+        float multiply;
+        if (UpgradesManager.Instance.expiredMedicine)
+            multiply = 0.5f;
+        else
+            multiply = 1f;
+        _enemyController.Rigidbody.MovePosition(_enemyController.Rigidbody.position + _enemyController.PlayerDir * (_enemyController.Speed * multiply * Time.fixedDeltaTime));
     }
 
     public override void OnExitState()
